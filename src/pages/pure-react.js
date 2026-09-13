@@ -1,47 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { PRESCHOOL_EVENTS, SCHEDULE_DATA } from '../data/preschoolEvents';
 
-export async function getServerSideProps(context) {
-  // Executed on the Node.js server for every request before delivering HTML
-  // Server-side API fetch to the same /api/events endpoint:
-  const protocol = context.req.headers['x-forwarded-proto'] || 'http';
-  const host = context.req.headers['host'] || 'localhost:3000';
-  const apiUrl = `${protocol}://${host}/api/events`;
+// Pure React CSR Component: NO getServerSideProps!
+// All data fetching and component mounting happens entirely in the browser client.
+export default function PureReactCsrPage() {
+  const [events, setEvents] = useState([]);
+  const [schedule, setSchedule] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [renderTimestamp, setRenderTimestamp] = useState(null);
 
-  let serverTimestamp = new Date().toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true,
-  });
-  let initialEvents = PRESCHOOL_EVENTS;
-  let initialSchedule = SCHEDULE_DATA;
-
-  try {
-    const res = await fetch(apiUrl);
-    if (res.ok) {
-      const data = await res.json();
-      serverTimestamp = data.serverTimestamp || serverTimestamp;
-      initialEvents = data.events || PRESCHOOL_EVENTS;
-      initialSchedule = data.schedule || SCHEDULE_DATA;
-    }
-  } catch (err) {
-    // If the server cannot reach itself via HTTP loopback, fall back cleanly to data constants
-    console.warn('Server-side fetch to /api/events note:', err.message);
-  }
-
-  return {
-    props: {
-      serverTimestamp,
-      initialEvents,
-      initialSchedule,
-    },
-  };
-}
-
-export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialSchedule }) {
   const [selectedIds, setSelectedIds] = useState([]);
   const [fullName, setFullName] = useState('');
   const [rollNo, setRollNo] = useState('');
@@ -50,6 +19,50 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
   const [dept, setDept] = useState('CSE');
   const [accommodation, setAccommodation] = useState('no');
 
+  useEffect(() => {
+    // Real asynchronous client-side HTTP fetch to the mock API endpoint
+    // Demonstrates the client waterfall: HTML -> JS bundle -> React mount -> HTTP GET /api/events
+    let isMounted = true;
+
+    fetch('/api/events')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (isMounted) {
+          setEvents(data.events || []);
+          setSchedule(data.schedule || []);
+          setLoading(false);
+          setRenderTimestamp(
+            data.serverTimestamp ||
+              new Date().toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+              })
+          );
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching /api/events:', err);
+        if (isMounted) {
+          // Graceful fallback to static data
+          setEvents(PRESCHOOL_EVENTS);
+          setSchedule(SCHEDULE_DATA);
+          setLoading(false);
+          setRenderTimestamp(new Date().toLocaleTimeString('en-US'));
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const toggleEvent = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -57,7 +70,7 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
   };
 
   const totalAmount = selectedIds.reduce((sum, id) => {
-    const item = (initialEvents || []).find((e) => e.id === id);
+    const item = events.find((e) => e.id === id);
     return sum + (item ? item.fee : 0);
   }, 0);
 
@@ -81,40 +94,51 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 md:p-10 font-sans">
       <Head>
-        <title>KIOT FEST 2026 | Next.js SSR (Server-Side Pre-rendered)</title>
-        <meta name="description" content="Annual National Technical Symposium. Pre-rendered on server for instant first paint and SEO." />
-        <meta property="og:title" content="KIOT FEST 2026 - Annual National Technical Symposium" />
-        <meta property="og:description" content="Cash prizes worth ₹50,000. Register now for Web Hackathon, Circuit Debugging, and AI Challenge." />
-        <meta property="og:image" content="https://kiotfest.com/poster.jpg" />
+        <title>KIOT FEST 2026 | Pure React CSR (Client-Side Rendered)</title>
+        <meta name="description" content="Annual National Technical Symposium. Client-Side Rendered demonstrating SPA bundle and fetch waterfalls." />
       </Head>
 
+      <noscript>
+        <div className="max-w-5xl mx-auto mb-6 p-4 bg-rose-900 border border-rose-600 rounded-2xl text-white font-bold text-center">
+          ⚠️ JavaScript is disabled in your browser! Pure React cannot render any content without executing client-side JavaScript.
+        </div>
+      </noscript>
+
       {/* Top Architecture Status Bar */}
-      <div className="max-w-5xl mx-auto mb-6 p-4 bg-slate-900 border border-emerald-500/40 rounded-2xl shadow-xl flex flex-wrap items-center justify-between gap-3">
+      <div className="max-w-5xl mx-auto mb-6 p-4 bg-slate-900 border border-rose-500/40 rounded-2xl shadow-xl flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center space-x-3">
           <span className="flex h-3 w-3 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
           </span>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-black uppercase tracking-wider text-emerald-400">
-                Architecture: Next.js Server-Side Rendering (SSR)
+              <span className="text-xs font-black uppercase tracking-wider text-rose-400">
+                Architecture: Pure React Client-Side Rendering (CSR)
               </span>
-              <span className="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">
-                getServerSideProps (Server API Fetch)
+              <span className="text-[11px] bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-0.5 rounded-full font-mono">
+                fetch(&apos;/api/events&apos;)
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Pre-rendered on Server via <code className="text-emerald-300 font-mono">GET /api/events</code> at <strong className="text-emerald-300 font-mono">{serverTimestamp}</strong> • Zero client-side API requests!
+              {loading ? (
+                <span className="text-amber-300 animate-pulse font-mono">
+                  ⏳ Browser executing JS bundle &amp; awaiting HTTP GET /api/events...
+                </span>
+              ) : (
+                <>
+                  Rendered in Browser Client at <strong className="text-rose-300 font-mono">{renderTimestamp}</strong> via <code className="text-rose-300 font-mono">GET /api/events</code> • Delayed First Contentful Paint (~2.4s on 3G)
+                </>
+              )}
             </p>
           </div>
         </div>
 
         <Link
-          href="/pure-react"
-          className="inline-flex items-center space-x-2 px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-rose-600/30"
+          href="/"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-emerald-600/30"
         >
-          <span>⚡ Switch to Pure React CSR (/pure-react)</span>
+          <span>🚀 Switch to Next.js SSR (/)</span>
           <span>➔</span>
         </Link>
       </div>
@@ -176,55 +200,68 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-4">
             <div>
               <h2 className="text-xl font-bold text-white">Featured Symposium Events</h2>
-              <p className="text-xs text-slate-400">Pre-rendered directly by Next.js server; available in raw HTML payload.</p>
+              <p className="text-xs text-slate-400">Populated client-side via React useEffect after bundle execution.</p>
             </div>
-            <span className="text-xs font-mono px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-lg">
-              ✓ Server Pre-rendered
+            <span className="text-xs font-mono px-2.5 py-1 bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded-lg">
+              {loading ? '⏳ Fetching Client Data...' : '⚡ Client Rendered'}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(initialEvents || []).map((event) => {
-              const isSelected = selectedIds.includes(event.id);
-              return (
-                <article
-                  key={event.id}
-                  data-id={event.id}
-                  data-fee={event.fee}
-                  className="p-6 bg-slate-950 border border-slate-800 hover:border-indigo-500/50 rounded-2xl flex flex-col justify-between space-y-4 transition shadow-md"
-                >
-                  <div className="space-y-2">
-                    <span className="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded text-[10px] font-bold uppercase">
-                      {event.dept}
-                    </span>
-                    <h3 className="text-base font-bold text-white">{event.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{event.desc}</p>
-                    <ul className="text-xs text-slate-300 space-y-1 pt-2 border-t border-slate-800/80">
-                      <li>• Team Size: {event.teamSize}</li>
-                      <li>• Cash Prize: <strong className="text-amber-300">{event.prize}</strong></li>
-                      <li data-fee={event.fee}>• Entry Fee: ₹{event.fee} {event.feeUnit}</li>
-                      {event.tools && <li>• Tools: {event.tools}</li>}
-                      {event.eligibility && <li>• Eligibility: {event.eligibility}</li>}
-                    </ul>
-                  </div>
-
-                  <button
-                    type="button"
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-pulse">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-4">
+                  <div className="h-4 bg-slate-800 rounded w-1/3"></div>
+                  <div className="h-6 bg-slate-800 rounded w-3/4"></div>
+                  <div className="h-12 bg-slate-800/60 rounded"></div>
+                  <div className="h-10 bg-slate-800 rounded"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {events.map((event) => {
+                const isSelected = selectedIds.includes(event.id);
+                return (
+                  <article
+                    key={event.id}
                     data-id={event.id}
                     data-fee={event.fee}
-                    onClick={() => toggleEvent(event.id)}
-                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition shadow ${
-                      isSelected
-                        ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
-                        : 'bg-indigo-600 hover:bg-indigo-500 text-white'
-                    }`}
+                    className="p-6 bg-slate-950 border border-slate-800 hover:border-indigo-500/50 rounded-2xl flex flex-col justify-between space-y-4 transition shadow-md"
                   >
-                    {isSelected ? 'Selected ✓' : 'Select Event for Registration'}
-                  </button>
-                </article>
-              );
-            })}
-          </div>
+                    <div className="space-y-2">
+                      <span className="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded text-[10px] font-bold uppercase">
+                        {event.dept}
+                      </span>
+                      <h3 className="text-base font-bold text-white">{event.title}</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">{event.desc}</p>
+                      <ul className="text-xs text-slate-300 space-y-1 pt-2 border-t border-slate-800/80">
+                        <li>• Team Size: {event.teamSize}</li>
+                        <li>• Cash Prize: <strong className="text-amber-300">{event.prize}</strong></li>
+                        <li data-fee={event.fee}>• Entry Fee: ₹{event.fee} {event.feeUnit}</li>
+                        {event.tools && <li>• Tools: {event.tools}</li>}
+                        {event.eligibility && <li>• Eligibility: {event.eligibility}</li>}
+                      </ul>
+                    </div>
+
+                    <button
+                      type="button"
+                      data-id={event.id}
+                      data-fee={event.fee}
+                      onClick={() => toggleEvent(event.id)}
+                      className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition shadow ${
+                        isSelected
+                          ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                          : 'bg-indigo-600 hover:bg-indigo-500 text-white'
+                      }`}
+                    >
+                      {isSelected ? 'Selected ✓' : 'Select Event for Registration'}
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </section>
 
         {/* Schedule Section */}
@@ -232,28 +269,34 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
           <h2 className="text-xl font-bold text-white border-b border-slate-800 pb-4">
             Event Schedule &amp; Timings
           </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-slate-800 text-indigo-400 uppercase text-[11px] tracking-wider">
-                  <th className="py-3 px-4">Time Slot</th>
-                  <th className="py-3 px-4">Event Name</th>
-                  <th className="py-3 px-4">Venue / Lab</th>
-                  <th className="py-3 px-4">Coordinator</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                {(initialSchedule || []).map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-800/30 transition">
-                    <td className="py-3 px-4 font-mono text-slate-400">{row.time}</td>
-                    <td className="py-3 px-4 font-bold text-white">{row.name}</td>
-                    <td className="py-3 px-4">{row.venue}</td>
-                    <td className="py-3 px-4 text-slate-400">{row.coordinator}</td>
+          {loading ? (
+            <div className="p-8 text-center text-slate-500 text-xs animate-pulse">
+              Loading schedule details on client...
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-800 text-indigo-400 uppercase text-[11px] tracking-wider">
+                    <th className="py-3 px-4">Time Slot</th>
+                    <th className="py-3 px-4">Event Name</th>
+                    <th className="py-3 px-4">Venue / Lab</th>
+                    <th className="py-3 px-4">Coordinator</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                  {schedule.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-800/30 transition">
+                      <td className="py-3 px-4 font-mono text-slate-400">{row.time}</td>
+                      <td className="py-3 px-4 font-bold text-white">{row.name}</td>
+                      <td className="py-3 px-4">{row.venue}</td>
+                      <td className="py-3 px-4 text-slate-400">{row.coordinator}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </section>
 
         {/* Registration Form */}
@@ -414,22 +457,22 @@ export default function NextJsSsrPage({ serverTimestamp, initialEvents, initialS
         </footer>
 
         {/* DevTools Demonstration Guide Card */}
-        <div className="p-6 bg-slate-900/60 border border-indigo-500/30 rounded-3xl space-y-3 text-xs">
-          <h4 className="text-sm font-bold text-indigo-400 flex items-center space-x-2">
-            <span>🛠️ How to Demonstrate This in Browser DevTools:</span>
+        <div className="p-6 bg-slate-900/60 border border-rose-500/30 rounded-3xl space-y-3 text-xs">
+          <h4 className="text-sm font-bold text-rose-400 flex items-center space-x-2">
+            <span>🛠️ How to Demonstrate Pure React Bottlenecks in Browser DevTools:</span>
           </h4>
           <ol className="list-decimal list-inside space-y-2 text-slate-300 leading-relaxed">
             <li>
-              <strong>View Page Source (<code className="text-emerald-400 font-mono">Cmd+Option+U</code> / <code className="text-emerald-400 font-mono">Ctrl+U</code>):</strong> Notice that all event titles, cash prizes, dates, and tables are <strong>100% present in the initial HTML</strong>! Social media crawlers and Googlebot can index it instantly.
+              <strong>View Page Source (<code className="text-rose-400 font-mono">Cmd+Option+U</code> / <code className="text-rose-400 font-mono">Ctrl+U</code>):</strong> Inspect the server payload. The HTML body is basically empty! Search for "Web Hackathon" or "₹50,000" — <strong>0 results found</strong>. Search engine bots cannot read your content!
             </li>
             <li>
-              <strong>Disable JavaScript (<code className="text-emerald-400 font-mono">DevTools &gt; Settings (F1) &gt; Disable JavaScript</code>):</strong> Reload the page. The symposium site still renders completely! Then open <code className="text-rose-400 font-mono">/pure-react</code> to see the difference.
+              <strong>Disable JavaScript (<code className="text-rose-400 font-mono">DevTools &gt; Settings (F1) &gt; Disable JavaScript</code>):</strong> Reload this page. Nothing renders except the noscript warning. In pure React, if JS fails or is slow to load, the user sees a blank screen.
             </li>
             <li>
-              <strong>Network Throttling (<code className="text-emerald-400 font-mono">DevTools &gt; Network &gt; Fast 3G</code>):</strong> Reload this page. The First Contentful Paint (FCP) is nearly instantaneous because the server already delivered ready HTML!
+              <strong>Network Throttling (<code className="text-rose-400 font-mono">DevTools &gt; Network &gt; Fast 3G</code>):</strong> Reload this page. Notice the lag and skeleton loader while waiting for the JS bundle to download and client-side <code className="text-rose-400 font-mono">useEffect</code> to fetch data. Then visit <code className="text-emerald-400 font-mono">/</code> to see Next.js SSR instant paint!
             </li>
             <li>
-              <strong>Zero API Waterfall (<code className="text-emerald-400 font-mono">DevTools &gt; Network &gt; Fetch/XHR</code>):</strong> Filter requests by <strong>Fetch/XHR</strong>. Notice that <strong>0 network requests</strong> are made by the browser to load events! Then visit <code className="text-rose-400 font-mono">/pure-react</code> to see the client-side <code className="text-rose-400 font-mono">GET /api/events</code> roundtrip.
+              <strong>Real API Waterfall (<code className="text-rose-400 font-mono">DevTools &gt; Network &gt; Fetch/XHR</code>):</strong> Filter requests by <strong>Fetch/XHR</strong>. Notice the real network request <code className="text-rose-400 font-mono">GET /api/events</code> with status <code className="text-emerald-400 font-mono">200 OK</code>! Then switch to <code className="text-emerald-400 font-mono">/</code> (Next.js SSR) and verify that <strong>0 Fetch/XHR requests</strong> are made because the server pre-rendered the data!
             </li>
           </ol>
         </div>
