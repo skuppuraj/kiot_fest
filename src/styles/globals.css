@@ -2,8 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-outfit: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #0a0f1d;
+    color: #f8fafc;
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* ============================================================================
+ * CROSS-DEVICE & CROSS-BROWSER COMPATIBILITY UTILITIES
+ * ============================================================================ */
+
+/* 1. Fluid Typography with CSS clamp() */
+.fluid-hero-title {
+  font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
+  line-height: 1.1;
+}
+
+.fluid-section-title {
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  line-height: 1.2;
+}
+
+.fluid-subtext {
+  font-size: clamp(0.9rem, 1.5vw + 0.2rem, 1.125rem);
+}
+
+/* 2. Glassmorphism with @supports Fallback for Older Browsers / Safari */
+.fest-glass {
+  background-color: #111827; /* Solid dark fallback */
+  border: 1px solid #1f2937;
+}
+
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .fest-glass {
+    background-color: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.fest-glass-nav {
   background-color: #0a0f1d;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
+  border-bottom: 1px solid #1f2937;
+}
+
+@supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
+  .fest-glass-nav {
+    background-color: rgba(10, 15, 29, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* 3. Smooth Horizontal Scrolling for Mobile Filter Pills */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 4. Touch Targets & Safe Area Ergonomics */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+/* 5. Custom Fest Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0f1d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* 6. Print Styles for Pass Printing */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .fest-ticket-card {
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
 }
