@@ -24,6 +24,7 @@ function RegisterButton({ event, cart, onAddToCart }) {
 }
 
 function EventCard({ event, cart, onAddToCart }) {
+  // EventCard doesn't care about cart, it is forced to forward props!
   return (
     <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl flex justify-between">
       <span>{event.title}</span>
