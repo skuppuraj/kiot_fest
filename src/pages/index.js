@@ -1,113 +1,126 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 
-export default function WhyHtmlPage() {
+export default function WhyCssPage() {
+  const [showWarning, setShowWarning] = useState(false);
+
   return (
-    <div style={{ fontFamily: 'Times New Roman, serif', padding: '24px', maxWidth: '900px', margin: '0 auto', color: '#000000', backgroundColor: '#ffffff', lineHeight: 1.5 }}>
+    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '16px' }}>
       <Head>
-        <title>Unit 0: Step 1 - Why HTML? | KIOT Fest 2026</title>
+        <title>Unit 0: Step 2 - Why CSS? | KIOT Fest 2026</title>
       </Head>
 
       {/* Educational Banner */}
-      <div style={{ border: '2px dashed #b91c1c', padding: '16px', marginBottom: '24px', backgroundColor: '#fef2f2' }}>
-        <h2 style={{ marginTop: 0, color: '#991b1b' }}>🦴 UNIT 0: STEP 1 - WHY HTML? (THE SKELETON)</h2>
-        <p>
-          <strong>The Core Question:</strong> <em>"Why do we need HTML? What happens if you build a website with only pure semantic HTML?"</em>
+      <div style={{ backgroundColor: '#1e293b', border: '2px solid #6366f1', borderRadius: '16px', padding: '20px', marginBottom: '24px', color: '#f8fafc' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ backgroundColor: 'rgba(99, 102, 241, 0.2)', color: '#a5b4fc', padding: '4px 10px', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+              🎨 Unit 0: Step 2
+            </span>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, margin: 0, color: '#ffffff' }}>Why CSS Comes Into Play? (The Presentation Layer)</h2>
+          </div>
+          <div style={{ fontFamily: 'monospace', fontSize: '0.8rem', color: '#a5b4fc', backgroundColor: '#0f172a', padding: '6px 12px', borderRadius: '8px', border: '1px solid #334155' }}>
+            $ git checkout preschool-03-why-vanilla-js
+          </div>
+        </div>
+
+        <p style={{ fontSize: '0.9rem', color: '#cbd5e1', lineHeight: 1.6, margin: '8px 0' }}>
+          <strong>Notice: The HTML below is 100% IDENTICAL to Step 1!</strong> We did not change a single HTML tag. CSS styles the existing tags via the <strong>Box Model</strong>, <strong>CSS Grid</strong> (cards), and <strong>Flexbox</strong> (navbar).
         </p>
-        <p>
-          <strong>What you see below:</strong> The complete KIOT Fest portal rendered using <strong>100% pure semantic HTML5</strong> (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;form&gt;</code>) with <strong>ZERO CSS styling</strong>.
-        </p>
-        <ul>
-          <li>Notice the browser user-agent defaults: serif font (Times New Roman), standard blue links, unstyled form buttons, black-and-white layout.</li>
-          <li><strong>Why it matters:</strong> HTML provides the semantic hierarchy and accessibility tree required by screen readers and search crawlers.</li>
-          <li><strong>The Limitation:</strong> It looks like 1991! Elements stack vertically, without responsive grids, colors, typography, or branding.</li>
-        </ul>
-        <p>
-          👉 <strong>Direct file access:</strong> You can also open <code>index.html</code> directly in your browser!
-        </p>
-        <p style={{ marginBottom: 0 }}>
-          👉 <strong>Next Checkpoint:</strong> Run <code>git checkout preschool-02-why-css</code> to see how CSS dresses up this exact HTML!
-        </p>
+
+        <div style={{ backgroundColor: '#0f172a', padding: '12px 16px', borderRadius: '12px', border: '1px solid #334155', marginTop: '12px', fontSize: '0.85rem' }}>
+          <p style={{ color: '#f59e0b', fontWeight: 'bold', margin: '0 0 4px 0' }}>⚠️ The "Static Wall" of CSS:</p>
+          <p style={{ color: '#94a3b8', margin: 0 }}>
+            Click "Select Event for Registration" below. CSS looks modern, but it has no brain. It cannot calculate totals or store cart data!
+          </p>
+        </div>
       </div>
+
+      {showWarning && (
+        <div style={{ backgroundColor: '#450a0a', border: '1px solid #ef4444', color: '#fca5a5', padding: '14px', borderRadius: '12px', marginBottom: '24px', fontSize: '0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span>
+            🛑 <strong>CSS CANNOT STORE STATE!</strong> Notice that clicking the button does not increment the cart counter or save data. CSS is purely visual presentation. <strong>We need JavaScript for interactivity!</strong>
+          </span>
+          <button onClick={() => setShowWarning(false)} style={{ background: 'transparent', border: '1px solid #ef4444', color: '#fca5a5', padding: '4px 10px', borderRadius: '6px', cursor: 'pointer' }}>
+            Dismiss
+          </button>
+        </div>
+      )}
 
       {/* Semantic Header */}
       <header>
-        <h1 style={{ fontSize: '2.2em', marginBottom: '4px' }}>Knowledge Institute of Technology (KIOT)</h1>
-        <h2 style={{ fontSize: '1.4em', marginTop: 0, fontWeight: 'normal' }}>Department of Computer Science & Engineering</h2>
-        <h3 style={{ fontSize: '1.2em' }}>KIOT FEST 2026 - Annual National Technical Symposium</h3>
-        <p><em>Theme: Innovation, Fullstack Engineering & Sustainable Computing | Date: October 15-16, 2026</em></p>
+        <h1>Knowledge Institute of Technology (KIOT)</h1>
+        <h2>Department of Computer Science & Engineering</h2>
+        <h3>KIOT FEST 2026 - Annual National Technical Symposium</h3>
+        <p>Theme: Innovation, Fullstack Engineering & Sustainable Computing | Date: October 15-16, 2026</p>
         <hr />
         <nav>
-          <strong>Navigation:</strong> |{' '}
-          <a href="#events">Symposium Events</a> |{' '}
-          <a href="#schedule">Rounds & Schedule</a> |{' '}
-          <a href="#register">Student Registration</a> |{' '}
-          <a href="#contact">Coordinator Contact</a> |{' '}
-          <span>Selected Events: <strong>0</strong> | Total: <strong>₹0</strong></span>
+          <strong>Navigation:</strong>
+          <a href="#events">Symposium Events</a>
+          <a href="#schedule">Rounds & Schedule</a>
+          <a href="#register">Student Registration</a>
+          <a href="#contact">Coordinator Contact</a>
+          <span id="cart-status">Selected Events: <strong>0</strong> | Total: <strong>₹0</strong></span>
         </nav>
-        <hr />
       </header>
 
       {/* Main Content Area */}
       <main>
         <section id="announcement">
           <h3>📢 Symposium Announcement</h3>
-          <p>
-            Registrations are officially open for all accredited engineering institutions across India. Cash prizes worth <strong>₹50,000</strong> to be won across technical domains.
-          </p>
+          <p>Registrations are officially open. Cash prizes worth ₹50,000 to be won across 3 technical domains.</p>
         </section>
-
-        <hr />
 
         <section id="events">
-          <h2>Featured Symposium Events</h2>
+          <h2>Featured Symposium Events (Styled via CSS Grid)</h2>
+          <div className="events-grid">
+            <article>
+              <div>
+                <h3>1. Web Hackathon 2026</h3>
+                <p><strong>Department:</strong> CSE</p>
+                <p>Build fullstack web applications using React in 6 hours.</p>
+                <ul>
+                  <li>Team Size: 2-3 Members</li>
+                  <li>Cash Prize: ₹15,000</li>
+                  <li>Registration Fee: ₹200</li>
+                </ul>
+              </div>
+              <button type="button" onClick={() => setShowWarning(true)}>Select Event for Registration</button>
+            </article>
 
-          <article>
-            <h3>1. Web Hackathon 2026</h3>
-            <p><strong>Department:</strong> Computer Science & Engineering</p>
-            <p><strong>Description:</strong> Build fullstack web applications using modern JavaScript and React in a 6-hour intense coding sprint.</p>
-            <ul>
-              <li>Team Size: 2-3 Members</li>
-              <li>Cash Prize: ₹15,000</li>
-              <li>Registration Fee: ₹200 per team</li>
-            </ul>
-            <button type="button">Select Event for Registration</button>
-          </article>
+            <article>
+              <div>
+                <h3>2. Circuit Debugging Master</h3>
+                <p><strong>Department:</strong> ECE</p>
+                <p>PCB trace fault-finding and microcontroller firmware debugging.</p>
+                <ul>
+                  <li>Team Size: 1-2 Members</li>
+                  <li>Cash Prize: ₹8,000</li>
+                  <li>Registration Fee: ₹100</li>
+                </ul>
+              </div>
+              <button type="button" onClick={() => setShowWarning(true)}>Select Event for Registration</button>
+            </article>
 
-          <hr />
-
-          <article>
-            <h3>2. Circuit Debugging Master</h3>
-            <p><strong>Department:</strong> Electronics & Communication Engineering</p>
-            <p><strong>Description:</strong> PCB trace fault-finding, microcontroller assembly routines, and embedded hardware debugging.</p>
-            <ul>
-              <li>Team Size: 1-2 Members</li>
-              <li>Cash Prize: ₹8,000</li>
-              <li>Registration Fee: ₹100 per person</li>
-            </ul>
-            <button type="button">Select Event for Registration</button>
-          </article>
-
-          <hr />
-
-          <article>
-            <h3>3. AI Prompt & Model Challenge</h3>
-            <p><strong>Department:</strong> Artificial Intelligence & Data Science</p>
-            <p><strong>Description:</strong> Build generative AI workflows, optimize domain model prompts, and construct fast RAG pipelines.</p>
-            <ul>
-              <li>Team Size: 2 Members</li>
-              <li>Cash Prize: ₹12,000</li>
-              <li>Registration Fee: ₹150 per team</li>
-            </ul>
-            <button type="button">Select Event for Registration</button>
-          </article>
+            <article>
+              <div>
+                <h3>3. AI Prompt Challenge</h3>
+                <p><strong>Department:</strong> AI&DS</p>
+                <p>Construct prompt engineering pipelines and fine-tune mini domain models.</p>
+                <ul>
+                  <li>Team Size: 2 Members</li>
+                  <li>Cash Prize: ₹12,000</li>
+                  <li>Registration Fee: ₹150</li>
+                </ul>
+              </div>
+              <button type="button" onClick={() => setShowWarning(true)}>Select Event for Registration</button>
+            </article>
+          </div>
         </section>
-
-        <hr />
 
         <section id="schedule">
           <h2>Event Schedule & Timings</h2>
-          <table border="1" cellPadding="8" cellSpacing="0" style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table>
             <thead>
               <tr>
                 <th>Time Slot</th>
@@ -139,45 +152,37 @@ export default function WhyHtmlPage() {
           </table>
         </section>
 
-        <hr />
-
         <section id="register">
           <h2>Student Registration Form</h2>
-          <form action="#" method="POST">
+          <form action="#" method="POST" onSubmit={(e) => { e.preventDefault(); setShowWarning(true); }}>
             <fieldset>
               <legend>Student Personal Details</legend>
               <p>
-                <label htmlFor="studentName">Full Name (as per College ID):</label><br />
-                <input type="text" id="studentName" name="studentName" required placeholder="e.g. John Doe" />
+                <label htmlFor="studentName">Full Name:</label>
+                <input type="text" id="studentName" placeholder="e.g. John Doe" />
               </p>
               <p>
-                <label htmlFor="rollNumber">Register / Roll Number:</label><br />
-                <input type="text" id="rollNumber" name="rollNumber" required placeholder="e.g. 731521104001" />
+                <label htmlFor="rollNumber">Register Number:</label>
+                <input type="text" id="rollNumber" placeholder="e.g. 731521104001" />
               </p>
               <p>
-                <label htmlFor="dept">Department:</label><br />
-                <select id="dept" name="dept">
+                <label htmlFor="dept">Department:</label>
+                <select id="dept">
                   <option value="CSE">Computer Science & Engineering</option>
                   <option value="ECE">Electronics & Communication</option>
                   <option value="AIDS">Artificial Intelligence & Data Science</option>
                 </select>
               </p>
               <p>
-                <button type="submit">Submit Registration</button>{' '}
-                <button type="reset">Clear Form</button>
+                <button type="submit">Submit Registration</button>
               </p>
             </fieldset>
           </form>
         </section>
       </main>
 
-      <hr />
-
-      <footer id="contact">
-        <p><strong>Knowledge Institute of Technology (KIOT)</strong></p>
-        <address>NH-544, Kakapalayam, Salem - 637 504, Tamil Nadu, India.</address>
-        <p>Contact Email: <a href="mailto:kiotfest@kiot.ac.in">kiotfest@kiot.ac.in</a> | Phone: +91 427 2433900</p>
-        <p><small>&copy; 2026 KIOT CSE Department. All Rights Reserved.</small></p>
+      <footer>
+        <p>Knowledge Institute of Technology (KIOT) — Salem, Tamil Nadu.</p>
       </footer>
     </div>
   );
