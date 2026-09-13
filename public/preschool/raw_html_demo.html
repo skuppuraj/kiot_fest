@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KIOT FEST 2026 - Raw Semantic HTML Demonstration</title>
+</head>
+<body>
+
+  <!-- Notice: Zero CSS! Everything you see uses the browser's default user-agent stylesheet -->
+  <header>
+    <h1>Knowledge Institute of Technology</h1>
+    <h2>Department of Computer Science & Engineering</h2>
+    <h3>KIOT FEST 2026 - Annual National Technical Symposium</h3>
+    <p><em>The ultimate battleground for student coders, circuit designers, and innovators.</em></p>
+    <hr>
+    <nav>
+      <strong>Quick Navigation:</strong> |
+      <a href="#events">Explore Events</a> |
+      <a href="#schedule">Schedule & Rounds</a> |
+      <a href="#register">Student Registration Form</a> |
+      <a href="#contact">Contact Coordinators</a> |
+      <span id="cart-status">Selected Events: <strong id="cart-count">0</strong> | Total: <strong id="cart-total">&#8377;0</strong></span>
+    </nav>
+    <hr>
+  </header>
+
+  <main>
+    <section id="announcement">
+      <h3>📢 Symposium Announcement</h3>
+      <p>
+        Registration is now open for all affiliated engineering colleges. Cash prizes worth 
+        <strong>&#8377;50,000</strong> to be won across technical and non-technical rounds.
+      </p>
+    </section>
+
+    <hr>
+
+    <section id="events">
+      <h2>Featured Symposium Events</h2>
+
+      <article data-id="1" data-fee="200">
+        <h3>1. Web Hackathon 2026</h3>
+        <p><strong>Department:</strong> Computer Science &amp; Engineering</p>
+        <p><strong>Description:</strong> Build fullstack web applications using modern JavaScript and React in a 6-hour intense coding sprint.</p>
+        <ul>
+          <li>Team Size: 2 to 3 Members</li>
+          <li>Cash Prize: &#8377;15,000</li>
+          <li data-fee="200">Entry Fee: &#8377;200 per team</li>
+          <li>Eligibility: All B.E / B.Tech students</li>
+        </ul>
+        <button type="button" data-id="1" data-fee="200">Select Event for Registration</button>
+      </article>
+
+      <hr>
+
+      <article data-id="2" data-fee="100">
+        <h3>2. Circuit Debugging Master</h3>
+        <p><strong>Department:</strong> Electronics &amp; Communication Engineering</p>
+        <p><strong>Description:</strong> Trace faults on hardware PCBs, decode microcontroller assembly routines, and repair circuit tracks.</p>
+        <ul>
+          <li>Team Size: Individual or 2 Members</li>
+          <li>Cash Prize: &#8377;8,000</li>
+          <li data-fee="100">Entry Fee: &#8377;100 per person</li>
+          <li>Tools Provided: Digital Multimeters, Oscilloscopes, Soldering Station</li>
+        </ul>
+        <button type="button" data-id="2" data-fee="100">Select Event for Registration</button>
+      </article>
+
+      <hr>
+
+      <article data-id="3" data-fee="150">
+        <h3>3. AI Prompt & Model Challenge</h3>
+        <p><strong>Department:</strong> Artificial Intelligence &amp; Data Science</p>
+        <p><strong>Description:</strong> Optimize LLM prompts, build RAG pipelines, and fine-tune mini models on domain data.</p>
+        <ul>
+          <li>Team Size: 2 Members</li>
+          <li>Cash Prize: &#8377;12,000</li>
+          <li data-fee="150">Entry Fee: &#8377;150 per team</li>
+        </ul>
+        <button type="button" data-id="3" data-fee="150">Select Event for Registration</button>
+      </article>
+    </section>
+
+    <hr>
+
+    <section id="schedule">
+      <h2>Event Schedule &amp; Timings</h2>
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Time Slot</th>
+            <th>Event Name</th>
+            <th>Venue / Lab</th>
+            <th>Coordinator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09:30 AM - 12:30 PM</td>
+            <td>Web Hackathon (Round 1)</td>
+            <td>CSE Turing Lab (3rd Floor)</td>
+            <td>Prof. K. Raj (Ext. 402)</td>
+          </tr>
+          <tr>
+            <td>10:00 AM - 12:00 PM</td>
+            <td>Circuit Debugging</td>
+            <td>ECE Micro Lab (2nd Floor)</td>
+            <td>Prof. S. Priya (Ext. 214)</td>
+          </tr>
+          <tr>
+            <td>01:30 PM - 03:30 PM</td>
+            <td>AI Model Challenge</td>
+            <td>AI&amp;DS Cloud Lab (4th Floor)</td>
+            <td>Dr. M. Suresh (Ext. 505)</td>
+          </tr>
+          <tr>
+            <td>03:30 PM - 04:30 PM</td>
+            <td>Valedictory &amp; Prize Distribution</td>
+            <td>KIOT Main Auditorium</td>
+            <td>Principal &amp; HODs</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr>
+
+    <section id="register">
+      <h2>Student Registration Form</h2>
+      <form action="#" method="POST">
+        <fieldset>
+          <legend>Student Personal Details</legend>
+          <p>
+            <label for="fullName">Full Name (as on College ID):</label><br>
+            <input type="text" id="fullName" name="fullName" required placeholder="e.g. John Doe">
+          </p>
+          <p>
+            <label for="rollNo">Register / Roll Number:</label><br>
+            <input type="text" id="rollNo" name="rollNo" required placeholder="e.g. 731521104001">
+          </p>
+          <p>
+            <label for="college">College Name:</label><br>
+            <input type="text" id="college" name="college" required placeholder="e.g. Knowledge Institute of Technology">
+          </p>
+          <p>
+            <label for="email">College / Personal Email:</label><br>
+            <input type="email" id="email" name="email" required placeholder="student@kiot.ac.in">
+          </p>
+          <p>
+            <label for="dept">Department:</label><br>
+            <select id="dept" name="dept">
+              <option value="CSE">Computer Science &amp; Engineering</option>
+              <option value="ECE">Electronics &amp; Communication</option>
+              <option value="AIDS">Artificial Intelligence &amp; Data Science</option>
+              <option value="MECH">Mechanical Engineering</option>
+              <option value="IT">Information Technology</option>
+            </select>
+          </p>
+          <p>
+            <label>Accommodation Required?</label><br>
+            <input type="radio" id="acc_yes" name="accommodation" value="yes">
+            <label for="acc_yes">Yes (Hostel Room)</label>
+            <input type="radio" id="acc_no" name="accommodation" value="no" checked>
+            <label for="acc_no">No (Day Scholar / Local)</label>
+          </p>
+          <p>
+            <button type="submit">Submit Registration</button>
+            <button type="reset">Clear Form</button>
+          </p>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+  <hr>
+
+  <footer id="contact">
+    <p><strong>Knowledge Institute of Technology (KIOT)</strong></p>
+    <p>NH-544, Kakapalayam, Salem - 637 504, Tamil Nadu, India.</p>
+    <p>Contact Email: <a href="mailto:kiotfest@kiot.ac.in">kiotfest@kiot.ac.in</a> | Phone: +91 427 2433900</p>
+    <p><small>&copy; 2026 KIOT CSE Department. All Rights Reserved.</small></p>
+  </footer>
+
+</body>
+</html>
