@@ -22,6 +22,20 @@ import {
 let pool = null;
 let isMySqlAvailable = null;
 
+// Helper to strictly serialize any Date objects or MySQL date types to JSON-safe strings
+export function serializeData(data) {
+  if (!data) return data;
+  return JSON.parse(
+    JSON.stringify(data, (key, value) => {
+      if (value instanceof Date) {
+        const iso = value.toISOString();
+        return key === 'date' || key === 'event_date' ? iso.split('T')[0] : iso;
+      }
+      return value;
+    })
+  );
+}
+
 // Initialize MySQL pool if configured
 function getPool() {
   if (pool) return pool;
@@ -36,7 +50,8 @@ function getPool() {
         port: Number(process.env.MYSQL_PORT) || 3306,
         waitForConnections: true,
         connectionLimit: 10,
-        queueLimit: 0
+        queueLimit: 0,
+        dateStrings: true // Returns DATE and DATETIME columns as strings instead of Date objects
       });
       return pool;
     } catch (e) {
@@ -72,7 +87,7 @@ export async function getAllEvents({ department, category, search } = {}) {
 
       query += ' ORDER BY id ASC';
       const [rows] = await mySqlPool.query(query, params);
-      return rows;
+      return serializeData(rows);
     } catch (err) {
       console.warn('⚠️ [MySQL Error] Query failed, falling back to mock memory store:', err.message);
     }
@@ -90,7 +105,7 @@ export async function getAllEvents({ department, category, search } = {}) {
     const q = search.toLowerCase();
     events = events.filter(e => e.title.toLowerCase().includes(q) || e.description.toLowerCase().includes(q));
   }
-  return events;
+  return serializeData(events);
 }
 
 /**
@@ -103,13 +118,13 @@ export async function getEventById(id) {
   if (mySqlPool) {
     try {
       const [rows] = await mySqlPool.query('SELECT * FROM events WHERE id = ?', [numericId]);
-      if (rows && rows.length > 0) return rows[0];
+      if (rows && rows.length > 0) return serializeData(rows[0]);
     } catch (err) {
       console.warn('⚠️ [MySQL Error] getEventById fallback:', err.message);
     }
   }
 
-  return getMockEventById(numericId);
+  return serializeData(getMockEventById(numericId));
 }
 
 /**
@@ -172,13 +187,13 @@ export async function getTicketsByRollNo(rollNo) {
         ORDER BY r.registered_at DESC
       `;
       const [rows] = await mySqlPool.query(query, [rollNo.trim()]);
-      return rows;
+      return serializeData(rows);
     } catch (err) {
       console.warn('⚠️ [MySQL Error] getTicketsByRollNo fallback:', err.message);
     }
   }
 
-  return getMockRegistrationsByRollNo(rollNo);
+  return serializeData(getMockRegistrationsByRollNo(rollNo));
 }
 
 /**

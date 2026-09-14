@@ -36,11 +36,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const event = await getEventById(params.id);
+  const rawEvent = await getEventById(params.id);
 
-  if (!event) {
+  if (!rawEvent) {
     return { notFound: true };
   }
+
+  // Strict JSON serialization guarantee: converts any Date instances to string
+  const event = JSON.parse(
+    JSON.stringify(rawEvent, (key, value) => {
+      if (value instanceof Date) {
+        return value.toISOString().split('T')[0];
+      }
+      return value;
+    })
+  );
 
   return {
     props: { event },
