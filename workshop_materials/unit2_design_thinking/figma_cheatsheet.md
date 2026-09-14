@@ -33,3 +33,11 @@
      - State 3: Sold Out ("Housefull - 0 Seats")
 7. **Prototype Interaction**:
    - Connect "Register Now" button $\to$ "Registration Form Modal" frame with `On Click` $\to$ `Open Overlay` (Centered, Background Dim $50\%$).
+
+---
+
+## 3. Full App UI Kit & Vector Artboards (Branch 18 Mirror)
+
+👉 For the complete 8-screen UI kit matching Branch `18-final-project-and-vercel-deploy`, see:
+- **[Complete Figma App Blueprint & Import Guide](./figma_complete_app_blueprint.md)**
+- **[Vector Artboards Directory (`.svg`)](./artboards/)**: Drag-and-drop directly into Figma!
