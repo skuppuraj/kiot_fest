@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960" width="1440" height="960" style="background:#0a0f1d;">
+  <defs>
+    <linearGradient id="detailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#31104b"/>
+    </linearGradient>
+    <linearGradient id="regBtnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; }
+  </style>
+
+  <!-- ================= NAVBAR ================= -->
+  <g id="Navbar">
+    <rect width="1440" height="72" fill="#0a0f1d" fill-opacity="0.85"/>
+    <line x1="0" y1="72" x2="1440" y2="72" stroke="#1f2937" stroke-width="1"/>
+    <g transform="translate(80, 18)">
+      <rect width="36" height="36" rx="10" fill="#6366f1"/>
+      <path d="M12 18 L18 12 L24 18 L18 24 Z" fill="#ffffff"/>
+      <text x="46" y="24" fill="#ffffff" class="font-display" font-size="18" font-weight="900">KIOT FEST <tspan fill="#818cf8">2026</tspan></text>
+      <text x="400" y="23" fill="#94a3b8" class="font-sans" font-size="14">All Events</text>
+      <text x="500" y="23" fill="#94a3b8" class="font-sans" font-size="14">Schedule</text>
+      <text x="600" y="23" fill="#94a3b8" class="font-sans" font-size="14">My Passes</text>
+    </g>
+  </g>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <g transform="translate(120, 95)">
+    <!-- Breadcrumb -->
+    <text x="0" y="16" fill="#818cf8" class="font-sans" font-size="13" font-weight="600">← Back to All Competitions</text>
+
+    <!-- Top Event Header Banner -->
+    <g transform="translate(0, 32)">
+      <rect width="1200" height="200" rx="24" fill="url(#detailGrad)" stroke="#3730a3" stroke-width="1"/>
+      
+      <!-- Badges -->
+      <g transform="translate(36, 30)">
+        <rect width="60" height="26" rx="13" fill="#4338ca"/>
+        <text x="18" y="18" fill="#c7d2fe" class="font-sans" font-size="11" font-weight="800">CSE</text>
+
+        <rect x="70" width="90" height="26" rx="13" fill="#1e293b"/>
+        <text x="85" y="18" fill="#94a3b8" class="font-sans" font-size="11" font-weight="600">Hackathon</text>
+
+        <rect x="170" width="115" height="26" rx="13" fill="#064e3b" stroke="#059669"/>
+        <text x="182" y="18" fill="#6ee7b7" class="font-sans" font-size="11" font-weight="700">🟢 5 Seats Left</text>
+      </g>
+
+      <!-- Title & Prize -->
+      <text x="36" y="115" fill="#ffffff" class="font-display" font-size="34" font-weight="900">Web Hackathon 2026</text>
+      <text x="1160" y="115" text-anchor="end" fill="#fbbf24" class="font-display" font-size="32" font-weight="900">₹15,000</text>
+      <text x="1160" y="135" text-anchor="end" fill="#d97706" class="font-sans" font-size="12" font-weight="700">TOTAL PRIZE POOL</text>
+
+      <!-- Metadata Bar -->
+      <text x="36" y="165" fill="#cbd5e1" class="font-sans" font-size="13">
+        📅 March 25, 2026   •   ⏰ 09:30 AM - 04:30 PM   •   📍 CSE Lab 3, Knowledge Institute of Technology
+      </text>
+    </g>
+
+    <!-- Content 2-Column Grid -->
+    <g transform="translate(0, 256)">
+      <!-- LEFT COLUMN: Overview, Schedule, Rules -->
+      <g id="LeftCol">
+        <!-- Overview Card -->
+        <rect width="760" height="150" rx="20" fill="#111827" stroke="#1f2937"/>
+        <text x="28" y="36" fill="#ffffff" class="font-display" font-size="18" font-weight="800">Event Overview</text>
+        <text x="28" y="70" fill="#94a3b8" class="font-sans" font-size="14" leading="24">
+          Challenge your fullstack development prowess in an intensive 6-hour hackathon. Teams will design,
+        </text>
+        <text x="28" y="96" fill="#94a3b8" class="font-sans" font-size="14" leading="24">
+          build, and deploy functional web applications using React, Tailwind CSS, and REST/Next.js APIs.
+        </text>
+        <text x="28" y="122" fill="#94a3b8" class="font-sans" font-size="14" leading="24">
+          Industry tech leaders from top Chennai &amp; Bangalore startups will evaluate architecture and pitch.
+        </text>
+
+        <!-- Schedule Timeline Card -->
+        <g transform="translate(0, 175)">
+          <rect width="760" height="200" rx="20" fill="#111827" stroke="#1f2937"/>
+          <text x="28" y="36" fill="#ffffff" class="font-display" font-size="18" font-weight="800">Competition Schedule</text>
+
+          <!-- Timeline Items -->
+          <circle cx="40" cy="75" r="6" fill="#6366f1"/>
+          <line x1="40" y1="81" x2="40" y2="155" stroke="#334155" stroke-dasharray="3 3"/>
+          <text x="60" y="80" fill="#ffffff" class="font-sans" font-size="13" font-weight="700">09:30 AM — Problem Statements Revealed &amp; Architecture Pitch</text>
+
+          <circle cx="40" cy="115" r="6" fill="#a855f7"/>
+          <text x="60" y="120" fill="#ffffff" class="font-sans" font-size="13" font-weight="700">01:00 PM — Mid-Way Evaluation &amp; Mentor Code Review</text>
+
+          <circle cx="40" cy="155" r="6" fill="#10b981"/>
+          <text x="60" y="160" fill="#ffffff" class="font-sans" font-size="13" font-weight="700">03:30 PM — Final Demo Showcase, Judging &amp; Awards Ceremony</text>
+        </g>
+
+        <!-- Rules & Guidelines Card -->
+        <g transform="translate(0, 400)">
+          <rect width="760" height="170" rx="20" fill="#111827" stroke="#1f2937"/>
+          <text x="28" y="36" fill="#ffffff" class="font-display" font-size="18" font-weight="800">Rules &amp; Guidelines</text>
+          <text x="28" y="70" fill="#cbd5e1" class="font-sans" font-size="13">• Teams must consist of 2 to 3 registered engineering students.</text>
+          <text x="28" y="98" fill="#cbd5e1" class="font-sans" font-size="13">• All code must be authored inside a fresh GitHub repository created at event start.</text>
+          <text x="28" y="126" fill="#cbd5e1" class="font-sans" font-size="13">• Pre-built templates or plagiarized code will result in immediate disqualification.</text>
+        </g>
+      </g>
+
+      <!-- RIGHT COLUMN: Registration & Coordinator Card -->
+      <g id="RightCol" transform="translate(800, 0)">
+        <rect width="400" height="420" rx="24" fill="#111827" stroke="#3730a3" stroke-width="1.5"/>
+
+        <!-- Registration Pricing -->
+        <g transform="translate(32, 32)">
+          <text x="0" y="16" fill="#64748b" class="font-sans" font-size="11" font-weight="700">ENTRY FEE / TEAM</text>
+          <text x="0" y="52" fill="#ffffff" class="font-display" font-size="34" font-weight="900">₹200</text>
+          <text x="95" y="48" fill="#10b981" class="font-sans" font-size="12" font-weight="700">(Includes Lunch &amp; Kits)</text>
+
+          <!-- Seats Meter -->
+          <rect y="75" width="336" height="8" rx="4" fill="#1e293b"/>
+          <rect y="75" width="280" height="8" rx="4" fill="#10b981"/>
+          <text x="0" y="105" fill="#6ee7b7" class="font-sans" font-size="12" font-weight="600">⚡ Fast Filling: 35 / 40 Teams Registered</text>
+
+          <!-- Register Button -->
+          <g transform="translate(0, 130)">
+            <rect width="336" height="50" rx="14" fill="url(#regBtnGrad)"/>
+            <text x="168" y="32" text-anchor="middle" fill="#ffffff" class="font-sans" font-size="15" font-weight="700">
+              Register for Pass Now →
+            </text>
+          </g>
+
+          <!-- Add to Cart Alternative -->
+          <g transform="translate(0, 195)">
+            <rect width="336" height="42" rx="14" fill="#1e293b" stroke="#334155"/>
+            <text x="168" y="27" text-anchor="middle" fill="#e2e8f0" class="font-sans" font-size="13" font-weight="600">
+              🛒 Add to Registration Cart
+            </text>
+          </g>
+
+          <!-- Coordinator Info Box -->
+          <g transform="translate(0, 260)">
+            <rect width="336" height="75" rx="14" fill="#1e1b4b" fill-opacity="0.5" stroke="#312e81"/>
+            <text x="16" y="24" fill="#818cf8" class="font-sans" font-size="11" font-weight="700">COORDINATOR CONTACT</text>
+            <text x="16" y="46" fill="#ffffff" class="font-sans" font-size="13" font-weight="600">Faculty: Dr. K. Ramesh (CSE)</text>
+            <text x="16" y="66" fill="#cbd5e1" class="font-sans" font-size="12">Student Lead: Priya S — 98765 43210</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
