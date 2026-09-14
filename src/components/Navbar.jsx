@@ -1,11 +1,9 @@
-'use client';
-
-import React, { useState, useContext, useSyncExternalStore } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ReactReduxContext } from 'react-redux';
-import { toggleCart } from '../redux/slices/cartSlice';
-import { logout } from '../redux/slices/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCartCount, toggleCart } from '../redux/slices/cartSlice';
+import { selectIsAuthenticated, selectCoordinator, logout } from '../redux/slices/authSlice';
 import {
   Sparkles,
   Calendar,
@@ -22,25 +20,10 @@ import {
 
 export default function Navbar() {
   const router = useRouter();
-  const reduxContext = useContext(ReactReduxContext);
-  const store = reduxContext?.store;
-  const dispatch = store?.dispatch || null;
-
-  const cartCount = useSyncExternalStore(
-    store ? store.subscribe : () => () => {},
-    () => store?.getState()?.cart?.items?.length || 0,
-    () => 0
-  );
-  const isAuthenticated = useSyncExternalStore(
-    store ? store.subscribe : () => () => {},
-    () => Boolean(store?.getState()?.auth?.isAuthenticated),
-    () => false
-  );
-  const coordinator = useSyncExternalStore(
-    store ? store.subscribe : () => () => {},
-    () => store?.getState()?.auth?.coordinator || null,
-    () => null
-  );
+  const dispatch = useDispatch();
+  const cartCount = useSelector(selectCartCount);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const coordinator = useSelector(selectCoordinator);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -106,7 +89,7 @@ export default function Navbar() {
                   {coordinator?.name?.split(' ')[0] || 'Coordinator'}
                 </span>
                 <button
-                  onClick={() => dispatch && dispatch(logout())}
+                  onClick={() => dispatch(logout())}
                   title="Sign out"
                   className="text-slate-400 hover:text-rose-400 p-1"
                 >
@@ -125,7 +108,7 @@ export default function Navbar() {
 
             {/* Registration Cart Button (Redux-connected) */}
             <button
-              onClick={() => dispatch && dispatch(toggleCart())}
+              onClick={() => dispatch(toggleCart())}
               aria-label="View Registration Cart"
               className="relative p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 text-slate-200 hover:text-white transition flex items-center space-x-2 touch-target"
             >
@@ -180,7 +163,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <button
                 onClick={() => {
-                  if (dispatch) dispatch(logout());
+                  dispatch(logout());
                   setMobileMenuOpen(false);
                 }}
                 className="flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-semibold text-rose-400 hover:bg-rose-950/40 w-full"
