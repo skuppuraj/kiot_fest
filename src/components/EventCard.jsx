@@ -85,7 +85,7 @@ export default function EventCard({
               onClick={() => handleRegister ? handleRegister(data) : alert(`Registering for ${title}!`)}
               className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold text-white transition"
             >
-              Register (₹{fee})
+              Quick Register (₹{fee})
             </button>
           )}
         </div>
