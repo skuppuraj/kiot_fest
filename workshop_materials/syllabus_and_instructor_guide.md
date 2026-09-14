@@ -22,20 +22,21 @@
   - Higher-Order Functions, Closures, `map()`, `filter()`, `reduce()`.
   - Event loop, Promises, `async`/`await`, `fetch()` with error handling.
 - **11:00 - 11:15**: Tea Break & Quick Quiz.
-- **11:15 - 13:00 (Unit 2)**: Design Thinking & Figma UI/UX Prototyping
-  - Design thinking stages applied to college events.
-  - Low-fidelity wireframes to High-fidelity component design in Figma.
-  - Auto-layout, component variants, design tokens, and accessibility.
+- **11:15 - 13:00 ([Unit 2](./unit2_design_thinking/figma_complete_app_blueprint.md))**: Design Thinking & Figma UI/UX Prototyping
+  - [Design Thinking Framework](./unit2_design_thinking/design_thinking_framework.md) applied to college events.
+  - [Low-fidelity wireframes to High-fidelity design](./unit2_design_thinking/wireframing_guide.md).
+  - [Figma Prototyping Cheatsheet](./unit2_design_thinking/figma_cheatsheet.md) & [Complete 8-Artboard UI Kit](./unit2_design_thinking/artboards/) (Branch 18 Mirror).
+  - Auto-layout, component variants, design tokens, and clickable prototyping.
 - **13:00 - 14:00**: Lunch Break.
-- **14:00 - 17:30 (Unit 3)**: React Fundamentals with Problem-Driven Learning
+- **14:00 - 17:30 ([Unit 3](./unit3_react_fundamentals/README.md))**: React Fundamentals with Problem-Driven Learning
   - Setup environment with Vite + Tailwind CSS.
-  - Problem 1: Monolithic HTML $\to$ Reusable Components (`EventCard`, `Navbar`).
-  - Problem 2: Hardcoded data $\to$ Dynamic `props`.
-  - Problem 3: Static UI $\to$ Reactive `useState` & Synthetic Event handling.
-  - Problem 4: Missing search states $\to$ Conditional Rendering (`&&`, Ternary).
-  - Problem 5: Page reloads on submit $\to$ Controlled Forms & Real-time Validation.
-  - Problem 6: Infinite re-render loop on fetch $\to$ `useEffect` Hook lifecycle.
-  - Problem 7: Multi-page navigation $\to$ `react-router-dom` dynamic routing.
+  - [Problem 1: Monolithic HTML $\to$ Reusable Components (`EventCard`, `Navbar`)](./unit3_react_fundamentals/01-why-react-and-jsx.md) (Branch: `01-react-setup-and-jsx`).
+  - [Problem 2: Hardcoded data $\to$ Dynamic `props`](./unit3_react_fundamentals/02-components-and-props.md) (Branch: `02-components-and-props`).
+  - [Problem 3: Static UI $\to$ Reactive `useState` & Synthetic Event handling](./unit3_react_fundamentals/03-usestate-and-synthetic-events.md) (Branch: `03-state-and-event-handling`).
+  - [Problem 4: Missing search states $\to$ Conditional Rendering (`&&`, Ternary)](./unit3_react_fundamentals/04-conditional-rendering.md) (Branch: `04-conditional-rendering`).
+  - [Problem 5: Page reloads on submit $\to$ Controlled Forms & Real-time Validation](./unit3_react_fundamentals/05-controlled-forms-and-validation.md) (Branch: `05-controlled-forms-validation`).
+  - [Problem 6: Infinite re-render loop on fetch $\to$ `useEffect` Hook lifecycle](./unit3_react_fundamentals/06-useeffect-and-api-integration.md) (Branch: `06-useeffect-and-api-integration`).
+  - [Problem 7: Multi-page navigation $\to$ `react-router-dom` dynamic routing](./unit3_react_fundamentals/07-react-router-spa.md) (Branch: `07-react-router-spa`).
 
 ---
 
