@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="background:#0a0f1d;">
+  <defs>
+    <linearGradient id="adminBtnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; }
+  </style>
+
+  <!-- ================= TOP ADMIN NAVBAR ================= -->
+  <g id="AdminNavbar">
+    <rect width="1440" height="70" fill="#0a0f1d"/>
+    <line x1="0" y1="70" x2="1440" y2="70" stroke="#1f2937"/>
+    
+    <g transform="translate(80, 18)">
+      <rect width="36" height="36" rx="10" fill="#f59e0b"/>
+      <text x="18" y="24" text-anchor="middle" fill="#000000" font-size="16">⚡</text>
+
+      <text x="48" y="24" fill="#ffffff" class="font-display" font-size="18" font-weight="900">
+        KIOT FEST <tspan fill="#f59e0b">ADMIN</tspan> PORTAL
+      </text>
+
+      <!-- Right Coordinator Profile -->
+      <g transform="translate(980, 2)">
+        <rect width="260" height="32" rx="16" fill="#1e293b" stroke="#334155"/>
+        <circle cx="18" cy="16" r="8" fill="#10b981"/>
+        <text x="36" y="20" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Coordinator: Prof. S. Karthik (CSE)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= MAIN ADMIN GRID ================= -->
+  <g transform="translate(80, 100)">
+    <!-- LEFT COLUMN: Publish New Event Form -->
+    <g id="EventForm" transform="translate(0, 0)">
+      <rect width="760" height="740" rx="24" fill="#111827" stroke="#1f2937"/>
+      
+      <g transform="translate(36, 36)">
+        <text x="0" y="20" fill="#ffffff" class="font-display" font-size="20" font-weight="900">
+          + Publish New Fest Competition
+        </text>
+        <text x="0" y="42" fill="#94a3b8" class="font-sans" font-size="12">
+          Published events immediately reflect in the student catalog, Redux store, and MySQL database.
+        </text>
+
+        <!-- Form Field 1: Event Title -->
+        <g transform="translate(0, 70)">
+          <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="12" font-weight="600">Event Title *</text>
+          <rect y="22" width="688" height="42" rx="10" fill="#1e293b" stroke="#334155"/>
+          <text x="14" y="48" fill="#ffffff" class="font-sans" font-size="13">Robotics Maze Solver 2026</text>
+        </g>
+
+        <!-- Form Row 2: Dept + Category -->
+        <g transform="translate(0, 150)">
+          <g>
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="12" font-weight="600">Host Department *</text>
+            <rect y="22" width="330" height="42" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="14" y="48" fill="#ffffff" class="font-sans" font-size="13">MECH (Mechanical)</text>
+          </g>
+          <g transform="translate(358, 0)">
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="12" font-weight="600">Category *</text>
+            <rect y="22" width="330" height="42" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="14" y="48" fill="#ffffff" class="font-sans" font-size="13">Technical Battle</text>
+          </g>
+        </g>
+
+        <!-- Form Row 3: Description -->
+        <g transform="translate(0, 230)">
+          <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="12" font-weight="600">Description *</text>
+          <rect y="22" width="688" height="70" rx="10" fill="#1e293b" stroke="#334155"/>
+          <text x="14" y="48" fill="#94a3b8" class="font-sans" font-size="12">Autonomous micro-mouse and wheeled robot line-follower maze navigation challenge.</text>
+        </g>
+
+        <!-- Form Row 4: Date, Venue, Prize -->
+        <g transform="translate(0, 335)">
+          <g>
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Date</text>
+            <rect y="20" width="215" height="40" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="12" y="44" fill="#ffffff" class="font-sans" font-size="12">2026-03-26</text>
+          </g>
+          <g transform="translate(236, 0)">
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Venue</text>
+            <rect y="20" width="215" height="40" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="12" y="44" fill="#ffffff" class="font-sans" font-size="12">Mech Seminar Hall</text>
+          </g>
+          <g transform="translate(472, 0)">
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Prize Pool</text>
+            <rect y="20" width="216" height="40" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="12" y="44" fill="#fcd34d" class="font-sans" font-size="12" font-weight="700">₹10,000</text>
+          </g>
+        </g>
+
+        <!-- Form Row 5: Fee & Seats -->
+        <g transform="translate(0, 420)">
+          <g>
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Entry Fee (₹)</text>
+            <rect y="20" width="330" height="40" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="12" y="44" fill="#ffffff" class="font-sans" font-size="12">150</text>
+          </g>
+          <g transform="translate(358, 0)">
+            <text x="0" y="14" fill="#cbd5e1" class="font-sans" font-size="11" font-weight="600">Total Seats</text>
+            <rect y="20" width="330" height="40" rx="10" fill="#1e293b" stroke="#334155"/>
+            <text x="12" y="44" fill="#ffffff" class="font-sans" font-size="12">40</text>
+          </g>
+        </g>
+
+        <!-- Submit Button -->
+        <g transform="translate(0, 505)">
+          <rect width="688" height="50" rx="14" fill="url(#adminBtnGrad)"/>
+          <text x="344" y="32" text-anchor="middle" fill="#ffffff" class="font-sans" font-size="15" font-weight="800">
+            + Publish Event to Live Student Portal
+          </text>
+        </g>
+      </g>
+    </g>
+
+    <!-- RIGHT COLUMN: Live Fest Roster -->
+    <g id="LiveRoster" transform="translate(800, 0)">
+      <rect width="480" height="740" rx="24" fill="#111827" stroke="#1f2937"/>
+      
+      <g transform="translate(28, 36)">
+        <text x="0" y="20" fill="#ffffff" class="font-display" font-size="18" font-weight="900">
+          Live Fest Roster (20 Events)
+        </text>
+        <text x="0" y="40" fill="#94a3b8" class="font-sans" font-size="12">
+          Real-time seat reservations &amp; attendance tracker
+        </text>
+
+        <!-- Roster Item 1 -->
+        <g transform="translate(0, 65)">
+          <rect width="424" height="90" rx="16" fill="#0f172a" stroke="#1f2937"/>
+          <text x="16" y="24" fill="#818cf8" class="font-sans" font-size="10" font-weight="800">CSE • HACKATHON</text>
+          <text x="408" y="24" text-anchor="end" fill="#6ee7b7" class="font-sans" font-size="11" font-weight="700">35 / 40 Booked</text>
+
+          <text x="16" y="48" fill="#ffffff" class="font-display" font-size="14" font-weight="800">Web Hackathon 2026</text>
+          
+          <!-- Progress Bar -->
+          <rect x="16" y="62" width="392" height="6" rx="3" fill="#1e293b"/>
+          <rect x="16" y="62" width="343" height="6" rx="3" fill="#10b981"/>
+        </g>
+
+        <!-- Roster Item 2 -->
+        <g transform="translate(0, 170)">
+          <rect width="424" height="90" rx="16" fill="#0f172a" stroke="#1f2937"/>
+          <text x="16" y="24" fill="#a5f3fc" class="font-sans" font-size="10" font-weight="800">ECE • TECHNICAL</text>
+          <text x="408" y="24" text-anchor="end" fill="#6ee7b7" class="font-sans" font-size="11" font-weight="700">28 / 40 Booked</text>
+
+          <text x="16" y="48" fill="#ffffff" class="font-display" font-size="14" font-weight="800">Circuit Debugging Master</text>
+          
+          <rect x="16" y="62" width="392" height="6" rx="3" fill="#1e293b"/>
+          <rect x="16" y="62" width="274" height="6" rx="3" fill="#06b6d4"/>
+        </g>
+
+        <!-- Roster Item 3 (SOLD OUT) -->
+        <g transform="translate(0, 275)">
+          <rect width="424" height="90" rx="16" fill="#0f172a" stroke="#4c0519"/>
+          <text x="16" y="24" fill="#fca5a5" class="font-sans" font-size="10" font-weight="800">MECH • BATTLE</text>
+          <text x="408" y="24" text-anchor="end" fill="#f87171" class="font-sans" font-size="11" font-weight="800">🔴 HOUSEFULL (30/30)</text>
+
+          <text x="16" y="48" fill="#ffffff" class="font-display" font-size="14" font-weight="800">Robo Wars Heavyweight</text>
+          
+          <rect x="16" y="62" width="392" height="6" rx="3" fill="#1e293b"/>
+          <rect x="16" y="62" width="392" height="6" rx="3" fill="#f43f5e"/>
+        </g>
+
+        <!-- Roster Item 4 -->
+        <g transform="translate(0, 380)">
+          <rect width="424" height="90" rx="16" fill="#0f172a" stroke="#1f2937"/>
+          <text x="16" y="24" fill="#d8b4fe" class="font-sans" font-size="10" font-weight="800">AI&amp;DS • WORKSHOP</text>
+          <text x="408" y="24" text-anchor="end" fill="#6ee7b7" class="font-sans" font-size="11" font-weight="700">52 / 60 Booked</text>
+
+          <text x="16" y="48" fill="#ffffff" class="font-display" font-size="14" font-weight="800">GenAI &amp; LLM Masterclass</text>
+          
+          <rect x="16" y="62" width="392" height="6" rx="3" fill="#1e293b"/>
+          <rect x="16" y="62" width="340" height="6" rx="3" fill="#a855f7"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
