@@ -4,7 +4,7 @@ import React from 'react';
  * Reusable EventCard Component
  * Demonstrates Conditional Rendering & Event Action Props:
  * 1. Sold-out badge vs seats remaining
- * 2. Disabled "Closed" button vs active "Register" button triggering registration modal
+ * 2. Disabled "Closed" button vs active "Quick Register" button triggering registration modal
  */
 export default function EventCard({ 
   id,
@@ -55,7 +55,7 @@ export default function EventCard({
             onClick={onRegister || (() => alert(`Registering for ${title}!`))}
             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold text-white transition"
           >
-            Register (₹{fee})
+            Quick Register (₹{fee})
           </button>
         )}
       </div>
