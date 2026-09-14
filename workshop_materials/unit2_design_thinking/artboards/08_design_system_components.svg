@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="1200" height="880" style="background:#0a0f1d;">
+  <defs>
+    <linearGradient id="primaryBtnDS" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'SF Mono', 'Courier New', monospace; }
+  </style>
+
+  <!-- Sheet Header -->
+  <g transform="translate(60, 40)">
+    <rect width="40" height="40" rx="12" fill="#6366f1"/>
+    <text x="20" y="27" text-anchor="middle" fill="#ffffff" font-size="20">🎨</text>
+
+    <text x="56" y="24" fill="#ffffff" class="font-display" font-size="24" font-weight="900">
+      KIOT FEST 2026 — Master Design System &amp; Component Kit
+    </text>
+    <text x="56" y="44" fill="#94a3b8" class="font-sans" font-size="13">
+      Figma Master Tokens, Reusable Component Variants, and Color Styles for Unit 2 Prototyping
+    </text>
+  </g>
+
+  <line x1="60" y1="105" x2="1140" y2="105" stroke="#1f2937"/>
+
+  <!-- ================= 1. COLOR TOKENS PALETTE ================= -->
+  <g transform="translate(60, 125)">
+    <text x="0" y="16" fill="#818cf8" class="font-sans" font-size="12" font-weight="800" letter-spacing="1">1. COLOR PALETTE TOKENS</text>
+    
+    <!-- Swatch 1: Body Dark -->
+    <g transform="translate(0, 30)">
+      <rect width="115" height="65" rx="12" fill="#0a0f1d" stroke="#1f2937"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Dark Body</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#0a0f1d</text>
+    </g>
+
+    <!-- Swatch 2: Card Dark -->
+    <g transform="translate(130, 30)">
+      <rect width="115" height="65" rx="12" fill="#111827" stroke="#1f2937"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Surface Card</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#111827</text>
+    </g>
+
+    <!-- Swatch 3: Primary Indigo -->
+    <g transform="translate(260, 30)">
+      <rect width="115" height="65" rx="12" fill="#6366f1"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Primary Indigo</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#6366f1</text>
+    </g>
+
+    <!-- Swatch 4: Violet Purple -->
+    <g transform="translate(390, 30)">
+      <rect width="115" height="65" rx="12" fill="#a855f7"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Accent Violet</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#a855f7</text>
+    </g>
+
+    <!-- Swatch 5: Amber Gold -->
+    <g transform="translate(520, 30)">
+      <rect width="115" height="65" rx="12" fill="#f59e0b"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Prize Gold</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#f59e0b</text>
+    </g>
+
+    <!-- Swatch 6: Emerald -->
+    <g transform="translate(650, 30)">
+      <rect width="115" height="65" rx="12" fill="#10b981"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Seats Open</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#10b981</text>
+    </g>
+
+    <!-- Swatch 7: Rose -->
+    <g transform="translate(780, 30)">
+      <rect width="115" height="65" rx="12" fill="#f43f5e"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Sold Out</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#f43f5e</text>
+    </g>
+
+    <!-- Swatch 8: Cyan -->
+    <g transform="translate(910, 30)">
+      <rect width="115" height="65" rx="12" fill="#06b6d4"/>
+      <text x="10" y="80" fill="#ffffff" class="font-sans" font-size="11" font-weight="700">Tech Cyan</text>
+      <text x="10" y="94" fill="#64748b" class="font-mono" font-size="10">#06b6d4</text>
+    </g>
+  </g>
+
+  <!-- ================= 2. TYPOGRAPHY & BADGES ================= -->
+  <g transform="translate(60, 275)">
+    <!-- Typography Specs -->
+    <g transform="translate(0, 0)">
+      <text x="0" y="16" fill="#818cf8" class="font-sans" font-size="12" font-weight="800" letter-spacing="1">2. TYPOGRAPHY SPECIMENS</text>
+      
+      <text x="0" y="52" fill="#ffffff" class="font-display" font-size="28" font-weight="900">Outfit Display Black 28px</text>
+      <text x="0" y="82" fill="#ffffff" class="font-sans" font-size="18" font-weight="700">Inter Headings Bold 18px</text>
+      <text x="0" y="108" fill="#94a3b8" class="font-sans" font-size="14">Inter Body Regular 14px — Clean &amp; legible on high DPI mobile screens.</text>
+      <text x="0" y="132" fill="#a5b4fc" class="font-mono" font-size="12">SF Mono 12px — Ticket codes: TICK-8492 | 22CS045</text>
+    </g>
+
+    <!-- Department Badges Matrix -->
+    <g transform="translate(600, 0)">
+      <text x="0" y="16" fill="#818cf8" class="font-sans" font-size="12" font-weight="800" letter-spacing="1">3. DEPARTMENT BADGE VARIANTS</text>
+
+      <g transform="translate(0, 35)">
+        <rect width="65" height="26" rx="13" fill="#4338ca"/>
+        <text x="18" y="17" fill="#c7d2fe" class="font-sans" font-size="11" font-weight="800">CSE</text>
+
+        <rect x="75" width="65" height="26" rx="13" fill="#0e7490"/>
+        <text x="94" y="17" fill="#a5f3fc" class="font-sans" font-size="11" font-weight="800">ECE</text>
+
+        <rect x="150" width="75" height="26" rx="13" fill="#6b21a8"/>
+        <text x="164" y="17" fill="#e9d5ff" class="font-sans" font-size="11" font-weight="800">AI&amp;DS</text>
+
+        <rect x="235" width="75" height="26" rx="13" fill="#78350f"/>
+        <text x="250" y="17" fill="#fde68a" class="font-sans" font-size="11" font-weight="800">MECH</text>
+
+        <rect x="320" width="75" height="26" rx="13" fill="#064e3b"/>
+        <text x="336" y="17" fill="#a7f3d0" class="font-sans" font-size="11" font-weight="800">CIVIL</text>
+
+        <rect x="405" width="55" height="26" rx="13" fill="#881337"/>
+        <text x="424" y="17" fill="#fecdd3" class="font-sans" font-size="11" font-weight="800">IT</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= 3. MASTER COMPONENT: EVENT CARD VARIANTS ================= -->
+  <g transform="translate(60, 460)">
+    <text x="0" y="16" fill="#818cf8" class="font-sans" font-size="12" font-weight="800" letter-spacing="1">
+      4. MASTER COMPONENT: &lt;EventCard /&gt; WITH 3 VARIANTS
+    </text>
+
+    <!-- VARIANT A: Default State -->
+    <g transform="translate(0, 35)">
+      <rect width="340" height="340" rx="18" fill="#111827" stroke="#1f2937"/>
+      <rect width="340" height="110" rx="18" fill="#1e1b4b"/>
+      <rect x="14" y="12" width="50" height="20" rx="6" fill="#4338ca"/>
+      <text x="24" y="26" fill="#c7d2fe" class="font-sans" font-size="10" font-weight="800">CSE</text>
+
+      <rect x="14" y="80" width="105" height="20" rx="6" fill="#064e3b" stroke="#059669"/>
+      <text x="22" y="94" fill="#6ee7b7" class="font-sans" font-size="10" font-weight="700">🟢 5 Seats Left</text>
+
+      <text x="16" y="145" fill="#ffffff" class="font-display" font-size="16" font-weight="800">Web Hackathon 2026</text>
+      <text x="16" y="168" fill="#94a3b8" class="font-sans" font-size="11">Build fullstack web apps in 6 hours.</text>
+
+      <text x="16" y="215" fill="#fbbf24" class="font-sans" font-size="13" font-weight="800">🏆 Prize: ₹15,000</text>
+
+      <line x1="16" y1="240" x2="324" y2="240" stroke="#1f2937"/>
+      <text x="16" y="275" fill="#64748b" class="font-sans" font-size="10" font-weight="700">FEE: ₹200</text>
+      <text x="16" y="295" fill="#ffffff" class="font-display" font-size="18" font-weight="900">₹200</text>
+
+      <rect x="200" y="265" width="124" height="38" rx="12" fill="#6366f1"/>
+      <text x="228" y="289" fill="#ffffff" class="font-sans" font-size="12" font-weight="700">+ Register</text>
+
+      <text x="0" y="360" fill="#818cf8" class="font-mono" font-size="11" font-weight="700">Variant: State = "Default"</text>
+    </g>
+
+    <!-- VARIANT B: In Cart State -->
+    <g transform="translate(370, 35)">
+      <rect width="340" height="340" rx="18" fill="#111827" stroke="#6366f1" stroke-width="2"/>
+      <rect width="340" height="110" rx="18" fill="#1e1b4b"/>
+      <rect x="14" y="12" width="50" height="20" rx="6" fill="#4338ca"/>
+      <text x="24" y="26" fill="#c7d2fe" class="font-sans" font-size="10" font-weight="800">CSE</text>
+
+      <rect x="14" y="80" width="105" height="20" rx="6" fill="#064e3b" stroke="#059669"/>
+      <text x="22" y="94" fill="#6ee7b7" class="font-sans" font-size="10" font-weight="700">🟢 5 Seats Left</text>
+
+      <text x="16" y="145" fill="#ffffff" class="font-display" font-size="16" font-weight="800">Web Hackathon 2026</text>
+      <text x="16" y="168" fill="#94a3b8" class="font-sans" font-size="11">Build fullstack web apps in 6 hours.</text>
+
+      <text x="16" y="215" fill="#fbbf24" class="font-sans" font-size="13" font-weight="800">🏆 Prize: ₹15,000</text>
+
+      <line x1="16" y1="240" x2="324" y2="240" stroke="#1f2937"/>
+      <text x="16" y="275" fill="#64748b" class="font-sans" font-size="10" font-weight="700">FEE: ₹200</text>
+      <text x="16" y="295" fill="#ffffff" class="font-display" font-size="18" font-weight="900">₹200</text>
+
+      <rect x="200" y="265" width="124" height="38" rx="12" fill="#065f46" stroke="#10b981" stroke-width="1.2"/>
+      <text x="232" y="289" fill="#6ee7b7" class="font-sans" font-size="12" font-weight="700">✓ In Cart</text>
+
+      <text x="0" y="360" fill="#10b981" class="font-mono" font-size="11" font-weight="700">Variant: State = "In Cart"</text>
+    </g>
+
+    <!-- VARIANT C: Sold Out State -->
+    <g transform="translate(740, 35)">
+      <rect width="340" height="340" rx="18" fill="#111827" stroke="#334155" stroke-opacity="0.5"/>
+      <rect width="340" height="110" rx="18" fill="#1e1b4b" fill-opacity="0.4"/>
+      <rect x="14" y="12" width="55" height="20" rx="6" fill="#78350f"/>
+      <text x="22" y="26" fill="#fde68a" class="font-sans" font-size="10" font-weight="800">MECH</text>
+
+      <rect x="14" y="80" width="115" height="20" rx="6" fill="#4c0519" stroke="#f43f5e"/>
+      <text x="22" y="94" fill="#fca5a5" class="font-sans" font-size="10" font-weight="700">🔴 HOUSEFULL</text>
+
+      <text x="16" y="145" fill="#94a3b8" class="font-display" font-size="16" font-weight="800">Robo Wars Heavyweight</text>
+      <text x="16" y="168" fill="#64748b" class="font-sans" font-size="11">Combat robotics arena battle challenge.</text>
+
+      <text x="16" y="215" fill="#94a3b8" class="font-sans" font-size="13" font-weight="700">🏆 Prize: ₹25,000</text>
+
+      <line x1="16" y1="240" x2="324" y2="240" stroke="#1f2937"/>
+      <text x="16" y="275" fill="#64748b" class="font-sans" font-size="10" font-weight="700">FEE: ₹300</text>
+      <text x="16" y="295" fill="#64748b" class="font-display" font-size="18" font-weight="900">₹300</text>
+
+      <rect x="200" y="265" width="124" height="38" rx="12" fill="#1e293b"/>
+      <text x="238" y="289" fill="#64748b" class="font-sans" font-size="12" font-weight="700">Closed</text>
+
+      <text x="0" y="360" fill="#f43f5e" class="font-mono" font-size="11" font-weight="700">Variant: State = "Sold Out"</text>
+    </g>
+  </g>
+</svg>
