@@ -81,42 +81,76 @@ All artboards use the exact design tokens defined in our Tailwind CSS configurat
 ### 3. Typography Styles:
 - **Hero Headings:** Font Family: `Outfit`, Weight: `900` (Black), Sizes: $44\text{px}$ – $48\text{px}$, Letter Spacing: `-1px`.
 - **Card Titles:** Font Family: `Outfit` or `Inter`, Weight: `800` (Bold), Size: $18\text{px}$.
-- **Body & Subtitles:** Font Family: `Inter`, Weight: `400` / `500` (Regular), Sizes: $13\text{px}$ – $14\text{px}$.
 - **Ticket Codes / Pass IDs:** Font Family: `SF Mono` or `Courier New`, Weight: `700`, Size: $12\text{px}$.
 
 ---
 
-## ⚡ Part 4: Hands-On Figma Exercise: Auto-Layout & Component Variants
+## ⚡ Part 4: Hands-On Figma Exercise: Auto-Layout & Component Variants (Click-by-Click Guide)
 
-Once you have imported the artboards into Figma, complete these three essential professional UI/UX exercises:
-
-### Exercise 2.1: Convert `EventCard` into a Master Component
-1. On artboard `08_design_system_components.svg`, select the card labeled **`Variant: State = "Default"`**.
-2. Press **`Cmd + Option + K`** (macOS) or **`Ctrl + Alt + K`** (Windows) to turn it into a **Master Component** (purple diamond icon).
-3. In the right-hand Properties Panel, click **`+ Property` $\to$ `Variant`**.
-4. Name the property: **`State`**.
-5. Add two more variants:
-   - Variant 2: Set `State` = **`In Cart`** (Change button to emerald *"✓ In Cart"*).
-   - Variant 3: Set `State` = **`Sold Out`** (Change badge to *"🔴 HOUSEFULL"* and button to disabled *"Closed"*).
-6. **Test the component:** Copy an instance of the card into your homepage, toggle the `State` dropdown in Figma, and observe how the card changes states instantly!
+> [!TIP]
+> **The Deep-Select Secret in Figma:** When you drag an SVG into Figma, everything is grouped. If clicking an object selects the whole page, hold **`Cmd` (Mac)** or **`Ctrl` (Windows)** and click directly on the element to deep-select it immediately!
 
 ---
 
-### Exercise 2.2: Apply Auto-Layout (`Shift + A`)
-1. Select the button with text **`+ Register`**.
-2. Press **`Shift + A`**.
-3. In the Auto-Layout panel:
-   - Direction: **Horizontal**.
-   - Horizontal Padding: $20\text{px}$.
-   - Vertical Padding: $10\text{px}$.
-   - Corner Radius: $12\text{px}$.
-4. Double-click the text and type a longer label like *"Register Now (Early Bird)"*.  
-   *Notice how the button smoothly expands while preserving exact padding—just like CSS Flexbox!*
+### Exercise 2.1: Convert `EventCard` into a Master Component with 3 Variants
+
+On artboard `08_design_system_components.svg`, we already placed the 3 card designs side-by-side:
+- **Card 1:** Default (`+ Register`)
+- **Card 2:** In Cart (`✓ In Cart` — Emerald)
+- **Card 3:** Sold Out (`Closed` — Housefull)
+
+#### Step 1: Group each card
+1. Hold `Shift` and drag a marquee selection around **Card 1** (the Default card).
+2. Press **`Cmd + G` (Mac)** or **`Ctrl + G` (Windows)** to group it into a single object. In the left layers panel, rename it to `Card - Default`.
+3. Repeat for **Card 2** $\to$ Rename to `Card - In Cart`.
+4. Repeat for **Card 3** $\to$ Rename to `Card - Sold Out`.
+
+#### Step 2: Turn each into a Component
+1. Select `Card - Default`.
+2. Look at the top center toolbar in Figma. Click the **Create Component** icon (❖ 4 small diamonds), OR press **`Cmd + Option + K` (Mac)** / **`Ctrl + Alt + K` (Windows)**.
+3. The bounding box turns purple.
+4. Repeat for `Card - In Cart` and `Card - Sold Out`. You now have 3 individual components.
+
+#### Step 3: Combine as Variants
+1. Select all 3 purple components together by holding `Shift` and clicking each.
+2. In the **Right Sidebar**, look for the button labeled: **`Combine as variants`** (dashed purple box with a plus sign).
+3. Click it! Figma wraps all 3 cards in a dashed purple component set.
+
+#### Step 4: Configure the Variant Property
+1. In the Right Sidebar under **Variants**, double-click `Property 1` and rename it to **`State`**.
+2. Click Card 1 inside the box $\to$ in the right panel set `State` to **`Default`**.
+3. Click Card 2 inside the box $\to$ set `State` to **`In Cart`**.
+4. Click Card 3 inside the box $\to$ set `State` to **`Sold Out`**.
+
+#### Step 5: Test the Component
+1. Copy Card 1 (`Cmd + C`) and paste it into `01_desktop_home.svg` (`Cmd + V`).
+2. Notice the hollow diamond ($\diamond$) icon—it is an instance!
+3. In the Right Sidebar, click the **`State`** dropdown and switch between `Default`, `In Cart`, and `Sold Out` to see the card transform instantly!
+
+---
+
+### Exercise 2.2: Apply Auto-Layout (`Shift + A`) to a Button
+
+Auto-Layout is Figma's Flexbox engine. It ensures buttons grow or shrink dynamically based on text length:
+
+1. Press `T` (Text Tool) and click on the canvas. Type: `+ Register`.
+2. With the text layer selected, press **`Shift + A`**.
+3. Look at the **Right Sidebar**:
+   - **Auto-Layout Direction:** Horizontal (`→`).
+   - **Horizontal padding (left/right):** Set to `20`.
+   - **Vertical padding (top/bottom):** Set to `12`.
+   - **Gap between items:** Set to `8`.
+   - **Corner Radius:** Set to `12`.
+   - **Fill:** Set color to `#6366f1` (KIOT Indigo).
+   - **Text Color:** Set text fill to `#ffffff` (White, Bold).
+4. Double-click the text and type a longer label like *"Register Now for Web Hackathon (₹200)"*.  
+   *Notice how the button smoothly expands while preserving exact 20px padding!*
 
 ---
 
 ### Exercise 2.3: Build an Interactive Clickable Prototype
-Switch to the **Prototype tab** (top right panel in Figma):
+
+Switch from the **[ Design ]** tab to the **[ Prototype ]** tab in the top-right corner of Figma:
 
 ```mermaid
 graph LR
@@ -132,16 +166,35 @@ graph LR
     Modal -- "Click 'Confirm Pass'" --> Pass
 ```
 
-1. **Wiring the Cart Drawer:**
-   - Select the `+ Register` button on Card 1.
-   - Drag the blue prototyping noodle $\to$ to the `05_cart_drawer.svg` artboard.
-   - Interaction: `On Click` $\to$ `Open Overlay` $\to$ Position: **Top Right**, Animation: **Slide In (from Right)**.
-2. **Wiring the Registration Modal:**
-   - On the cart drawer, select the *"Proceed to Register"* button.
-   - Drag the noodle $\to$ to `04_registration_modal.svg`.
-   - Interaction: `On Click` $\to$ `Open Overlay` $\to$ Position: **Centered**, Check: **Add background dim (60%)**.
-3. **Wiring the Final Pass:**
-   - In the modal, select *"Confirm Pass (₹200)"*.
-   - Drag the noodle $\to$ to `06_ticket_pass.svg`.
-   - Interaction: `On Click` $\to$ `Navigate To`, Animation: **Smart Animate**.
-4. Click the **"Present" (▶ Play)** button in the top right of Figma to test your interactive student fest portal!
+#### Interaction 1: Open Cart Drawer
+1. On `01_desktop_home.svg`, hold `Cmd`/`Ctrl` and click the **`+ Register`** button on Card 2.
+2. Hover over the button edge until a blue circle with `+` appears.
+3. Drag the blue noodle to `05_cart_drawer.svg`.
+4. In the Interaction Details panel:
+   - **Trigger:** `On click`
+   - **Action:** `Open overlay`
+   - **Position:** `Top right` (or `Right side`)
+   - **Animation:** `Slide in` $\to$ `← from right`
+   - **Options:** Check `Close when clicking outside` and `Add background behind overlay (60%)`.
+
+#### Interaction 2: Open Registration Modal
+1. On `05_cart_drawer.svg`, select the bottom button: `Proceed to Register (2) →`.
+2. Drag the blue noodle to `04_registration_modal.svg`.
+3. In Interaction Details:
+   - **Trigger:** `On click`
+   - **Action:** `Open overlay`
+   - **Position:** `Centered`
+   - **Animation:** `Instant`
+   - **Options:** Check `Add background behind overlay (70%)`.
+
+#### Interaction 3: Confirm Pass & View QR Ticket
+1. On `04_registration_modal.svg`, select `Confirm Pass (₹200) →`.
+2. Drag the blue noodle to `06_ticket_pass.svg`.
+3. In Interaction Details:
+   - **Trigger:** `On click`
+   - **Action:** `Navigate to`
+   - **Animation:** `Smart animate` (`300ms`, `Ease out`).
+
+#### Step 4: Run the Interactive Demo
+In the top-right toolbar of Figma, click the **`▶` (Present / Play)** button (or press `Cmd + Option + Enter` / `Ctrl + Alt + Enter`).  
+Click `+ Register` $\to$ Cart slides in $\to$ Click `Proceed to Register` $\to$ Modal pops up $\to$ Click `Confirm Pass` $\to$ Ticket animates into view! Enjoy your interactive student fest portal!
