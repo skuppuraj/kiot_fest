@@ -36,7 +36,7 @@ export default function Navbar() {
   const isActive = (path) => router.pathname === path;
 
   return (
-    <header className="sticky top-0 z-40 w-full fest-glass-nav transition-all duration-300">
+    <header className={`sticky top-0 z-40 w-full transition-all duration-300 ${mobileMenuOpen ? 'bg-[#0a0f1d] border-b border-slate-800' : 'fest-glass-nav'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo */}
@@ -135,7 +135,7 @@ export default function Navbar() {
 
       {/* Mobile Slide-Out Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 p-6 flex flex-col justify-between animate-fadeIn">
+        <div className="md:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 z-50 bg-[#0a0f1d] border-t border-slate-800 p-6 flex flex-col justify-between overflow-y-auto min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-5rem)]">
           <div className="space-y-3">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider px-3">
               Navigation Menu
