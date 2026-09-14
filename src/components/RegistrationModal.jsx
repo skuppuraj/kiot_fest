@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useContext } from 'react';
+import { ReactReduxContext } from 'react-redux';
 import {
   removeFromCart,
   clearCart,
@@ -20,7 +20,8 @@ import {
 import confetti from 'canvas-confetti';
 
 export default function RegistrationModal({ isOpen, onClose, targetEvent, onSuccess }) {
-  const dispatch = useDispatch();
+  const reduxContext = useContext(ReactReduxContext);
+  const dispatch = reduxContext?.store?.dispatch || null;
 
   const [formData, setFormData] = useState({
     student_name: '',
@@ -98,9 +99,11 @@ export default function RegistrationModal({ isOpen, onClose, targetEvent, onSucc
 
       // Success
       setRegisteredPass(data);
-      dispatch(setLastGeneratedPass(data));
-      if (targetEvent) {
-        dispatch(removeFromCart(targetEvent.id));
+      if (dispatch) {
+        dispatch(setLastGeneratedPass(data));
+        if (targetEvent) {
+          dispatch(removeFromCart(targetEvent.id));
+        }
       }
       triggerConfetti();
 

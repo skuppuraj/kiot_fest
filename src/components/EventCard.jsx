@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useContext, useSyncExternalStore } from 'react';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, selectCartItems, setCartOpen } from '../redux/slices/cartSlice';
+import { ReactReduxContext } from 'react-redux';
+import { addToCart, setCartOpen } from '../redux/slices/cartSlice';
 import {
   Calendar,
   Clock,
@@ -17,8 +17,17 @@ import {
 } from 'lucide-react';
 
 export default function EventCard({ event, onQuickRegister }) {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
+  // Safe Redux store lookup: prevents crash if <Provider> is absent in current route/branch
+  const reduxContext = useContext(ReactReduxContext);
+  const store = reduxContext?.store;
+
+  // React 18 safe store subscription (concurrent-safe, zero crash if store is null)
+  const cartItems = useSyncExternalStore(
+    store ? store.subscribe : () => () => {},
+    () => store?.getState()?.cart?.items || [],
+    () => []
+  );
+  const dispatch = store?.dispatch || null;
 
   const isInCart = cartItems.some((item) => item.id === event.id);
   const isSoldOut = Number(event.seats_booked) >= Number(event.seats_total);
@@ -45,9 +54,12 @@ export default function EventCard({ event, onQuickRegister }) {
   };
 
   const handleAddToCart = () => {
-    if (!isInCart && !isSoldOut) {
+    if (isSoldOut) return;
+    if (dispatch) {
       dispatch(addToCart(event));
       dispatch(setCartOpen(true));
+    } else if (onQuickRegister) {
+      onQuickRegister(event);
     }
   };
 
@@ -167,7 +179,7 @@ export default function EventCard({ event, onQuickRegister }) {
               </button>
             ) : isInCart ? (
               <button
-                onClick={() => dispatch(setCartOpen(true))}
+                onClick={() => dispatch && dispatch(setCartOpen(true))}
                 className="px-3.5 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold text-xs border border-emerald-500/40 flex items-center space-x-1.5 touch-target"
               >
                 <Check className="w-4 h-4" />

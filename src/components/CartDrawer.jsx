@@ -1,11 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useContext, useSyncExternalStore } from 'react';
+import { ReactReduxContext } from 'react-redux';
 import {
-  selectCartItems,
-  selectTotalAmount,
-  selectIsCartOpen,
   setCartOpen,
   removeFromCart,
   clearCart
@@ -23,10 +20,25 @@ import {
 } from 'lucide-react';
 
 export default function CartDrawer() {
-  const dispatch = useDispatch();
-  const items = useSelector(selectCartItems);
-  const totalAmount = useSelector(selectTotalAmount);
-  const isOpen = useSelector(selectIsCartOpen);
+  const reduxContext = useContext(ReactReduxContext);
+  const store = reduxContext?.store;
+  const dispatch = store?.dispatch || null;
+
+  const items = useSyncExternalStore(
+    store ? store.subscribe : () => () => {},
+    () => store?.getState()?.cart?.items || [],
+    () => []
+  );
+  const totalAmount = useSyncExternalStore(
+    store ? store.subscribe : () => () => {},
+    () => store?.getState()?.cart?.totalAmount || 0,
+    () => 0
+  );
+  const isOpen = useSyncExternalStore(
+    store ? store.subscribe : () => () => {},
+    () => Boolean(store?.getState()?.cart?.isCartOpen),
+    () => false
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCheckoutEvent, setActiveCheckoutEvent] = useState(null);
@@ -50,7 +62,7 @@ export default function CartDrawer() {
       <div className="fixed inset-0 z-50 overflow-hidden animate-fadeIn">
         {/* Backdrop */}
         <div
-          onClick={() => dispatch(setCartOpen(false))}
+          onClick={() => dispatch && dispatch(setCartOpen(false))}
           className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
         />
 
@@ -71,7 +83,7 @@ export default function CartDrawer() {
               </div>
 
               <button
-                onClick={() => dispatch(setCartOpen(false))}
+                onClick={() => dispatch && dispatch(setCartOpen(false))}
                 aria-label="Close cart"
                 className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition touch-target"
               >
@@ -114,7 +126,7 @@ export default function CartDrawer() {
                     </div>
 
                     <button
-                      onClick={() => dispatch(removeFromCart(event.id))}
+                      onClick={() => dispatch && dispatch(removeFromCart(event.id))}
                       aria-label={`Remove ${event.title} from cart`}
                       className="p-2 text-slate-500 hover:text-rose-400 rounded-lg hover:bg-slate-800 transition"
                     >
@@ -137,7 +149,7 @@ export default function CartDrawer() {
 
                 <div className="flex gap-2">
                   <button
-                    onClick={() => dispatch(clearCart())}
+                    onClick={() => dispatch && dispatch(clearCart())}
                     className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition"
                   >
                     Clear
