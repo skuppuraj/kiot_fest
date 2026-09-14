@@ -75,3 +75,11 @@ We use Tailwind CSS classes that correspond directly to modern design tokens:
 - **Dark Surface Palette**: Slate 900 (`bg-slate-900` body, `bg-slate-800/80` cards with `border-slate-700/50`)
 - **Border Radius**: `rounded-2xl` for cards, `rounded-full` for badges/pills.
 - **Glassmorphism**: `backdrop-blur-md bg-slate-900/70 border border-slate-700/40`.
+
+---
+
+## 4. Complete High-Fidelity Vector Artboards (Branch 18 Mirror)
+
+To see and edit the complete, high-fidelity production screens directly in Figma:
+- **[Complete Figma App Blueprint & Import Guide](./figma_complete_app_blueprint.md)**
+- **[Vector Artboards Directory (`.svg`)](./artboards/)**: 8 ready-to-import vector artboards (Desktop, Mobile, Detail, Modal, Cart Drawer, Ticket Pass, Admin, Design System).
