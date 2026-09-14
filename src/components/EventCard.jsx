@@ -2,7 +2,9 @@ import React from 'react';
 
 /**
  * Reusable EventCard Component
- * Solves Monolithic JSX by accepting dynamic data via PROPS
+ * Demonstrates Conditional Rendering:
+ * 1. Sold-out badge vs seats remaining
+ * 2. Disabled "Closed" button vs active "Quick Register" button
  */
 export default function EventCard({ 
   id,
@@ -40,7 +42,7 @@ export default function EventCard({
       </div>
 
       <div className="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center">
-        <span className="font-bold text-amber-400">{prize}</span>
+        <span className="text-amber-400 font-bold">{prize}</span>
         {isSoldOut ? (
           <button 
             disabled 
@@ -51,9 +53,9 @@ export default function EventCard({
         ) : (
           <button 
             onClick={onRegister || (() => alert(`Registered for ${title}!`))}
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition"
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold text-white transition"
           >
-            Register (₹{fee})
+            Quick Register (₹{fee})
           </button>
         )}
       </div>
