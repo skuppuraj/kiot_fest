@@ -22,10 +22,11 @@
   - Higher-Order Functions, Closures, `map()`, `filter()`, `reduce()`.
   - Event loop, Promises, `async`/`await`, `fetch()` with error handling.
 - **11:00 - 11:15**: Tea Break & Quick Quiz.
-- **11:15 - 13:00 (Unit 2)**: Design Thinking & Figma UI/UX Prototyping
-  - Design thinking stages applied to college events.
-  - Low-fidelity wireframes to High-fidelity component design in Figma.
-  - Auto-layout, component variants, design tokens, and accessibility.
+- **11:15 - 13:00 ([Unit 2](./unit2_design_thinking/figma_complete_app_blueprint.md))**: Design Thinking & Figma UI/UX Prototyping
+  - [Design Thinking Framework](./unit2_design_thinking/design_thinking_framework.md) applied to college events.
+  - [Low-fidelity wireframes to High-fidelity design](./unit2_design_thinking/wireframing_guide.md).
+  - [Figma Prototyping Cheatsheet](./unit2_design_thinking/figma_cheatsheet.md) & [Complete 8-Artboard UI Kit](./unit2_design_thinking/artboards/) (Branch 18 Mirror).
+  - Auto-layout, component variants, design tokens, and clickable prototyping.
 - **13:00 - 14:00**: Lunch Break.
 - **14:00 - 17:30 ([Unit 3](./unit3_react_fundamentals/README.md))**: React Fundamentals with Problem-Driven Learning
   - Setup environment with Vite + Tailwind CSS.
