@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 520" width="750" height="520" style="background:#0a0f1d;">
+  <defs>
+    <linearGradient id="ticketHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="50%" stop-color="#3730a3"/>
+      <stop offset="100%" stop-color="#581c87"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'SF Mono', 'Courier New', monospace; }
+  </style>
+
+  <!-- Top Action Button -->
+  <g transform="translate(605, 18)">
+    <rect width="115" height="34" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="57" y="22" text-anchor="middle" fill="#cbd5e1" class="font-sans" font-size="12" font-weight="600">🖨️ Print Pass</text>
+  </g>
+
+  <!-- Ticket Main Card -->
+  <g id="TicketPass" transform="translate(30, 60)">
+    <rect width="690" height="430" rx="26" fill="#111827" stroke="#4f46e5" stroke-width="1.5"/>
+
+    <!-- Header Gradient Strip -->
+    <rect width="690" height="85" rx="26" fill="url(#ticketHeaderGrad)"/>
+    <rect y="60" width="690" height="25" fill="url(#ticketHeaderGrad)"/> <!-- Flat bottom for header -->
+
+    <g transform="translate(32, 22)">
+      <rect width="40" height="40" rx="10" fill="#6366f1"/>
+      <text x="20" y="27" text-anchor="middle" fill="#fcd34d" font-size="20">✨</text>
+
+      <text x="54" y="22" fill="#ffffff" class="font-display" font-size="20" font-weight="900" letter-spacing="0.5">KIOT FEST 2026</text>
+      <text x="54" y="38" fill="#c7d2fe" class="font-sans" font-size="11">Knowledge Institute of Technology • Annual National Symposium</text>
+
+      <!-- Confirmed Badge -->
+      <g transform="translate(470, 4)">
+        <rect width="150" height="32" rx="16" fill="#064e3b" stroke="#10b981" stroke-width="1.2"/>
+        <text x="75" y="21" text-anchor="middle" fill="#6ee7b7" class="font-sans" font-size="11" font-weight="800">✓ CONFIRMED PASS</text>
+      </g>
+    </g>
+
+    <!-- Ticket Body Grid -->
+    <g transform="translate(32, 105)">
+      <!-- Left Column: Attendee Info -->
+      <g transform="translate(0, 10)">
+        <text x="0" y="16" fill="#64748b" class="font-sans" font-size="10" font-weight="800" letter-spacing="1">EVENT REGISTERED</text>
+        <text x="0" y="44" fill="#ffffff" class="font-display" font-size="22" font-weight="900">Web Hackathon 2026</text>
+
+        <!-- Student Meta Box -->
+        <g transform="translate(0, 60)">
+          <rect width="420" height="110" rx="16" fill="#0a0f1d" stroke="#1f2937"/>
+          
+          <!-- Row 1 -->
+          <text x="16" y="26" fill="#64748b" class="font-sans" font-size="10" font-weight="700">ATTENDEE NAME</text>
+          <text x="16" y="46" fill="#ffffff" class="font-sans" font-size="14" font-weight="700">Priyadharshini S</text>
+
+          <text x="220" y="26" fill="#64748b" class="font-sans" font-size="10" font-weight="700">ROLL NUMBER</text>
+          <text x="220" y="46" fill="#818cf8" class="font-mono" font-size="14" font-weight="800">22CS045</text>
+
+          <line x1="16" y1="60" x2="404" y2="60" stroke="#1f2937"/>
+
+          <!-- Row 2 -->
+          <text x="16" y="80" fill="#64748b" class="font-sans" font-size="10" font-weight="700">DEPT / YEAR</text>
+          <text x="16" y="98" fill="#e2e8f0" class="font-sans" font-size="12" font-weight="500">CSE • Year 3</text>
+
+          <text x="220" y="80" fill="#64748b" class="font-sans" font-size="10" font-weight="700">COLLEGE</text>
+          <text x="220" y="98" fill="#e2e8f0" class="font-sans" font-size="12" font-weight="500">KIOT Salem</text>
+        </g>
+
+        <!-- Timing & Venue -->
+        <text x="0" y="200" fill="#cbd5e1" class="font-sans" font-size="12">
+          📅 March 25, 2026   •   ⏰ 09:30 AM   •   📍 CSE Lab 3
+        </text>
+      </g>
+
+      <!-- Right Column: QR Code Container -->
+      <g transform="translate(460, 15)">
+        <rect width="165" height="195" rx="18" fill="#0a0f1d" stroke="#1f2937"/>
+        
+        <!-- QR Code Square Graphic -->
+        <g transform="translate(22, 18)">
+          <rect width="120" height="120" rx="12" fill="#ffffff"/>
+          <!-- Simulated QR Code Pixels -->
+          <rect x="10" y="10" width="30" height="30" fill="#000000"/>
+          <rect x="16" y="16" width="18" height="18" fill="#ffffff"/>
+          <rect x="20" y="20" width="10" height="10" fill="#000000"/>
+
+          <rect x="80" y="10" width="30" height="30" fill="#000000"/>
+          <rect x="86" y="16" width="18" height="18" fill="#ffffff"/>
+          <rect x="90" y="20" width="10" height="10" fill="#000000"/>
+
+          <rect x="10" y="80" width="30" height="30" fill="#000000"/>
+          <rect x="16" y="86" width="18" height="18" fill="#ffffff"/>
+          <rect x="20" y="90" width="10" height="10" fill="#000000"/>
+
+          <!-- Random QR Blocks -->
+          <rect x="50" y="20" width="12" height="12" fill="#000000"/>
+          <rect x="50" y="50" width="20" height="10" fill="#000000"/>
+          <rect x="80" y="60" width="12" height="18" fill="#000000"/>
+          <rect x="30" y="50" width="15" height="15" fill="#000000"/>
+          <rect x="60" y="85" width="25" height="15" fill="#000000"/>
+          <rect x="95" y="90" width="15" height="15" fill="#000000"/>
+        </g>
+
+        <text x="82" y="160" text-anchor="middle" fill="#818cf8" class="font-mono" font-size="12" font-weight="800">TICK-8492</text>
+        <text x="82" y="178" text-anchor="middle" fill="#64748b" class="font-sans" font-size="9">Scan at Checkpoint</text>
+      </g>
+    </g>
+
+    <!-- Bottom Security Strip -->
+    <g transform="translate(0, 385)">
+      <line x1="0" y1="0" x2="690" y2="0" stroke="#1f2937"/>
+      <rect y="1" width="690" height="44" rx="0" fill="#080c16"/>
+      <text x="32" y="26" fill="#64748b" class="font-sans" font-size="11">🎓 KIOT Fest Organizing Committee • Kakapalayam, Salem</text>
+      <text x="658" y="26" text-anchor="end" fill="#10b981" class="font-mono" font-size="10" font-weight="800">DIGITAL VERIFIED PASS</text>
+    </g>
+  </g>
+</svg>
