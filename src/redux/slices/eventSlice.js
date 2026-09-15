@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { ALL_EVENTS } from '../../data/events';
 
 /**
- * Async Thunk to fetch events from the Next.js API
+ * Async Thunk to fetch events from API or fallback data
  */
 export const fetchEvents = createAsyncThunk(
   'events/fetchEvents',
@@ -14,18 +15,26 @@ export const fetchEvents = createAsyncThunk(
 
       const res = await fetch(`/api/events?${queryParams.toString()}`);
       if (!res.ok) {
-        throw new Error('Failed to fetch events from server');
+        throw new Error('API response was not ok');
       }
       const data = await res.json();
       return data;
     } catch (err) {
-      return rejectWithValue(err.message);
+      // Graceful fallback to initial events if API is offline
+      let filtered = ALL_EVENTS;
+      if (department && department !== 'ALL') {
+        filtered = filtered.filter(e => e.department === department);
+      }
+      if (search) {
+        filtered = filtered.filter(e => e.title.toLowerCase().includes(search.toLowerCase()));
+      }
+      return filtered;
     }
   }
 );
 
 const initialState = {
-  events: [],
+  events: ALL_EVENTS,
   selectedDepartment: 'ALL',
   selectedCategory: 'ALL',
   searchQuery: '',
