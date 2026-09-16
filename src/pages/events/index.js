@@ -50,7 +50,7 @@ export default function EventsCatalogPage({ initialEvents, generatedAt }) {
               All Competitions & Workshops
             </h1>
             <p className="text-slate-400 text-sm mt-1">
-              Pre-rendered at: <code className="text-indigo-300 font-mono">{new Date(generatedAt).toLocaleTimeString()}</code> (SSG + ISR 60s)
+              Pre-rendered at: <code className="text-indigo-300 font-mono" suppressHydrationWarning>{new Date(generatedAt).toLocaleTimeString()}</code> (SSG + ISR 60s)
             </p>
           </div>
         </div>

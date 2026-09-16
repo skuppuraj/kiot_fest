@@ -56,7 +56,7 @@ export default function HomePage({ initialEvents, generatedAt }) {
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <span className="text-xs px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
-              ⚡ Edge Cached • Generated: <strong className="text-indigo-400">{new Date(generatedAt).toLocaleTimeString()}</strong>
+              ⚡ Edge Cached • Generated: <strong className="text-indigo-400" suppressHydrationWarning>{new Date(generatedAt).toLocaleTimeString()}</strong>
             </span>
           </div>
         </section>
