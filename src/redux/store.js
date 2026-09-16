@@ -1,16 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './slices/cartSlice';
 import eventReducer from './slices/eventSlice';
-import { loadState, saveState } from './localStorage';
-
-const preloadedState = loadState();
+import { saveState } from './localStorage';
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     events: eventReducer,
   },
-  preloadedState,
   devTools: process.env.NODE_ENV !== 'production',
 });
 

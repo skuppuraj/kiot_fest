@@ -86,24 +86,68 @@ export const saveState = (state) => {
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './slices/cartSlice';
 import eventReducer from './slices/eventSlice';
-import { loadState, saveState } from './localStorage';
-
-// 1. Load saved state from localStorage (or undefined if fresh/SSR)
-const preloadedState = loadState();
+import { saveState } from './localStorage';
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     events: eventReducer,
   },
-  preloadedState, // Hydrate state
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-// 2. Subscribe to store updates with a debounce or direct save
+// Subscribe to store updates to persist cart changes to localStorage
 store.subscribe(() => {
   saveState(store.getState());
 });
+```
+
+### 3. Avoiding the Next.js React Hydration Error (`_app.js` & `cartSlice.js`)
+
+> ⚠️ **Common Trap: Why NOT use `preloadedState: loadState()` directly in Next.js?**
+> Next.js renders HTML on the server where `localStorage` is inaccessible (`cartCount = 0`). If the client store immediately preloads saved items before mounting (`cartCount = 2`), React detects a mismatch between the server HTML and client initial render, throwing:  
+> `Error: Text content does not match server-rendered HTML (ReactcheckForUnmatchedText)`
+>
+> **The Production Solution:** Hydrate saved state in `_app.js` inside a `useEffect` after initial mount!
+
+**In `src/redux/slices/cartSlice.js`:**
+```javascript
+hydrateCart: (state, action) => {
+  if (action.payload) {
+    state.items = action.payload.items || [];
+    state.totalAmount = action.payload.totalAmount || 0;
+    if (action.payload.studentInfo) {
+      state.studentInfo = { ...state.studentInfo, ...action.payload.studentInfo };
+    }
+  }
+}
+```
+
+**In `src/pages/_app.js`:**
+```javascript
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
+import { hydrateCart } from '../redux/slices/cartSlice';
+import { loadState } from '../redux/localStorage';
+import CartDrawer from '../components/CartDrawer';
+
+export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    // Safely hydrate cart from localStorage on the client after initial mount
+    const savedState = loadState();
+    if (savedState && savedState.cart) {
+      store.dispatch(hydrateCart(savedState.cart));
+    }
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+      <CartDrawer />
+    </Provider>
+  );
+}
 ```
 
 ---

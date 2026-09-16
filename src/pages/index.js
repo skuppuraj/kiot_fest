@@ -65,7 +65,7 @@ export default function HomePage() {
           <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-800 rounded-full text-xs font-semibold">
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
             <span className="text-slate-300">Persisted Cart Items:</span>
-            <span className="text-amber-400 font-bold">{cartCount} items</span>
+            <span className="text-amber-400 font-bold" suppressHydrationWarning>{cartCount} items</span>
           </div>
         </section>
 
