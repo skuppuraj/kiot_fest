@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
+import { hydrateCart } from '../redux/slices/cartSlice';
+import { loadState } from '../redux/localStorage';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    // Safely hydrate cart from localStorage on the client after initial mount
+    const savedState = loadState();
+    if (savedState && savedState.cart) {
+      store.dispatch(hydrateCart(savedState.cart));
+    }
+  }, []);
   return (
     <Provider store={store}>
       <Head>

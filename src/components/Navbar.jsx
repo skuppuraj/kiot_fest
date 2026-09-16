@@ -115,7 +115,10 @@ export default function Navbar() {
               <ShoppingBag className="w-5 h-5 text-indigo-400" />
               <span className="hidden sm:inline text-sm font-semibold">Cart</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-black rounded-full h-5 w-5 flex items-center justify-center shadow-glow-accent animate-bounce">
+                <span 
+                  suppressHydrationWarning
+                  className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-black rounded-full h-5 w-5 flex items-center justify-center shadow-glow-accent animate-bounce"
+                >
                   {cartCount}
                 </span>
               )}
