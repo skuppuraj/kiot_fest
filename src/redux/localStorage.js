@@ -1,3 +1,5 @@
+let isHydrated = false;
+
 /**
  * Helper to safely persist and hydrate Redux state via localStorage in Next.js
  */
@@ -7,6 +9,7 @@ export const loadState = () => {
       return undefined;
     }
     const serializedState = localStorage.getItem('kiot_fest_cart');
+    isHydrated = true; // Mark as hydrated so future saves are allowed
     if (!serializedState) {
       return undefined;
     }
@@ -29,6 +32,7 @@ export const loadState = () => {
       }
     };
   } catch (err) {
+    isHydrated = true;
     console.warn('Could not load state from localStorage:', err);
     return undefined;
   }
@@ -37,6 +41,8 @@ export const loadState = () => {
 export const saveState = (state) => {
   try {
     if (typeof window === 'undefined') return;
+    // Guard: Do not overwrite localStorage before loadState() has run on mount
+    if (!isHydrated) return;
     if (!state.cart) return;
 
     const dataToSave = {

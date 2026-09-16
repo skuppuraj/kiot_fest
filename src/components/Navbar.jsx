@@ -44,9 +44,12 @@ export default function Navbar() {
           >
             <span className="text-sm">🛒</span>
             <span className="text-xs font-bold text-slate-300">Cart</span>
-            <span className={`px-2 py-0.5 rounded-full text-xs font-black transition-all ${
-              cartCount > 0 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40 animate-pulse' : 'bg-slate-800 text-slate-400'
-            }`}>
+            <span 
+              suppressHydrationWarning
+              className={`px-2 py-0.5 rounded-full text-xs font-black transition-all ${
+                cartCount > 0 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40 animate-pulse' : 'bg-slate-800 text-slate-400'
+              }`}
+            >
               {cartCount}
             </span>
           </button>
