@@ -58,6 +58,15 @@ export const cartSlice = createSlice({
     updateStudentInfo: (state, action) => {
       state.studentInfo = { ...state.studentInfo, ...action.payload };
     },
+    hydrateCart: (state, action) => {
+      if (action.payload) {
+        state.items = action.payload.items || [];
+        state.totalAmount = action.payload.totalAmount || 0;
+        if (action.payload.studentInfo) {
+          state.studentInfo = { ...state.studentInfo, ...action.payload.studentInfo };
+        }
+      }
+    },
     setLastGeneratedPass: (state, action) => {
       state.lastGeneratedPass = action.payload;
     }
@@ -71,6 +80,7 @@ export const {
   toggleCart,
   setCartOpen,
   updateStudentInfo,
+  hydrateCart,
   setLastGeneratedPass
 } = cartSlice.actions;
 
